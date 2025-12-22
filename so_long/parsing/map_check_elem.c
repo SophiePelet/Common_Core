@@ -6,11 +6,12 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 17:12:22 by sopelet           #+#    #+#             */
-/*   Updated: 2025/12/19 17:20:07 by sopelet          ###   ########.fr       */
+/*   Updated: 2025/12/22 15:58:56 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include "libft.h"
 
 t_elem	elem_count(char **map)
 {
@@ -52,7 +53,7 @@ int	elem_check_counts(t_elem cnt)
 
 int	elem_check(char **map)
 {
-	t_elem  cnt;
+	t_elem	cnt;
 
 	cnt = elem_count(map);
 	return (elem_check_counts(cnt));

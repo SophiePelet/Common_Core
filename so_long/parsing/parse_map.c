@@ -6,30 +6,15 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 16:07:26 by sopelet           #+#    #+#             */
-/*   Updated: 2025/12/19 14:34:55 by sopelet          ###   ########.fr       */
+/*   Updated: 2025/12/22 15:26:50 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include "libft.h"
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
-
-static int	count_map_line(int fd)
-{
-	int		nb_line;
-	char	*line;
-
-	nb_line = 0;
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		free(line);
-		line = get_next_line(fd);
-		nb_line++;
-	}
-	return (nb_line);
-}
 
 static char	**free_map(char **map, int index)
 {

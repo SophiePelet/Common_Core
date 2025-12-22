@@ -6,11 +6,13 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 13:27:05 by sopelet           #+#    #+#             */
-/*   Updated: 2025/12/19 16:33:05 by sopelet          ###   ########.fr       */
+/*   Updated: 2025/12/22 16:52:12 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include "libft.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 int	main(void)
@@ -33,6 +35,11 @@ int	main(void)
 		exit(1);
 	if (!elem_check(map))
 		exit(1);
+	if (!is_path_valid(map))
+	{
+		ft_putstr("No valid path");
+		exit(1);
+	}
 	while (map[i])
 	{
 		ft_printf("%s\n", map[i]);

@@ -6,11 +6,12 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 12:46:36 by sopelet           #+#    #+#             */
-/*   Updated: 2025/12/19 17:12:49 by sopelet          ###   ########.fr       */
+/*   Updated: 2025/12/22 16:01:18 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include "libft.h"
 
 int	check_rect(char **map_data)
 {

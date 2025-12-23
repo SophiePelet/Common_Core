@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 16:10:18 by sopelet           #+#    #+#             */
-/*   Updated: 2025/12/22 16:50:33 by sopelet          ###   ########.fr       */
+/*   Updated: 2025/12/23 12:35:24 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <mlx.h>
-#include <stdlib.h>
+# include <stdlib.h>
 
 # define FLOOR '0'
 # define WALL '1'

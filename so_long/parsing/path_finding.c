@@ -62,51 +62,51 @@ static void	check_neighbors(t_queue *q, t_visited *v, char **map, t_pos pos)
 //create a free function so that it is less than 25 lines
 int	bfs_find_path(char **map, t_pos start, t_pos end)
 {
-	t_queue		*q;
+	t_queue		*queue;
 	t_map		dims;
-	t_visited	*v;
+	t_visited	*vis;
 	int			x;
 	int			y;
 
 	if (!map_dimension(map, &dims))
 		return (0);
-	q = queue_alloc();
-	v = visited_alloc(dims.height, dims.width);
-	if (!q || !v)
+	queue = queue_alloc();
+	vis = visited_alloc(dims.height, dims.width);
+	if (!queue || !vis)
 		return (0);
-	add_end(q, start.x, start.y);
-	visited(v, start.x, start.y);
-	while (remove_front(q, &x, &y))
+	add_end(queue, start.x, start.y);
+	visited(vis, start.x, start.y);
+	while (remove_front(queue, &x, &y))
 	{
 		if (x == end.x && y == end.y)
 		{
-			free_all(q);
-			free_visited(v, v->height);
+			free_all(queue);
+			free_visited(vis, vis->height);
 			return (1);
 		}
-		check_neighbors(q, v, map, (t_pos){x, y});
+		check_neighbors(queue, vis, map, (t_pos){x, y});
 	}
-	free_all(q);
-	free_visited(v, v->height);
+	free_all(queue);
+	free_visited(vis, vis->height);
 	return (0);
 }
 
 int	is_path_valid(char **map)
 {
-	t_pos	*p;
-	t_pos	*e;
+	t_pos	*player;
+	t_pos	*exit;
 	int		result;
 
-	p = position(PLAYER, map);
-	e = position(EXIT, map);
-	if (!p || !e)
+	player = position(PLAYER, map);
+	exit = position(EXIT, map);
+	if (!player || !exit)
 	{
-		free(p);
-		free(e);
+		free(player);
+		free(exit);
 		return (0);
 	}
-	result = bfs_find_path(map, *p, *e);
-	free(p);
-	free(e);
+	result = bfs_find_path(map, *player, *exit);
+	free(player);
+	free(exit);
 	return (result);
 }

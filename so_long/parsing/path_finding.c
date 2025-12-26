@@ -1,3 +1,4 @@
+#include "libft.h"
 #include "so_long.h"
 #include <stdlib.h>
 
@@ -30,83 +31,52 @@ t_pos	*position(char c, char **map)
 	return (NULL);
 }
 
-static void	check_neighbors(t_queue *q, t_visited *v, char **map, t_pos pos)
+t_elem	fill(char **tab, t_map *size, int row, int col)
 {
-	int	dirs[4][2];
-	int	i;
-	int	nx;
-	int	ny;
+	static t_elem	elements;
 
-	dirs[0][0] = 0;
-	dirs[0][1] = -1;
-	dirs[1][0] = 0;
-	dirs[1][1] = 1;
-	dirs[2][0] = -1;
-	dirs[2][1] = 0;
-	dirs[3][0] = 1;
-	dirs[3][1] = 0;
-	i = 0;
-	while (i < 4)
+	if (tab == NULL)
 	{
-		nx = pos.x + dirs[i][0];
-		ny = pos.y + dirs[i][1];
-		if (is_floor(map, nx, ny) && !mark_visited(v, nx, ny))
-		{
-			add_end(q, nx, ny);
-			visited(v, nx, ny);
-		}
-		i++;
+		elements.collectible = 0;
+		elements.exit = 0;
+		return (elements);
 	}
+	if (row < 0 || col < 0 || row >= size->height || col >= size->width)
+		return (elements);
+	if (tab[row][col] == 'V' || tab[row][col] == WALL)
+		return (elements);
+	if (tab[row][col] == COLLECTIBLE)
+		elements.collectible++;
+	if (tab[row][col] == EXIT)
+		elements.exit++;
+	tab[row][col] = 'V';
+	fill(tab, size, row - 1, col);
+	fill(tab, size, row + 1, col);
+	fill(tab, size, row, col - 1);
+	fill(tab, size, row, col + 1);
+	return (elements);
 }
 
-//create a free function so that it is less than 25 lines
-int	bfs_find_path(char **map, t_pos start, t_pos end)
+int	flood_fill(char **tab)
 {
-	t_queue		*queue;
-	t_map		dims;
-	t_visited	*vis;
-	int			x;
-	int			y;
+	t_map	*size;
+	t_pos	*start_pos;
+	t_elem	cnt;
+	t_elem	elements;
 
-	if (!map_dimension(map, &dims))
+	size = map_dimension(tab);
+	if (!size)
 		return (0);
-	queue = queue_alloc();
-	vis = visited_alloc(dims.height, dims.width);
-	if (!queue || !vis)
-		return (0);
-	add_end(queue, start.x, start.y);
-	visited(vis, start.x, start.y);
-	while (remove_front(queue, &x, &y))
+	start_pos = position(PLAYER, tab);
+	cnt = elem_count(tab);
+	fill(NULL, NULL, 0, 0);
+	elements = fill(tab, size, start_pos->y, start_pos->x);
+	free(start_pos);
+	free(size);
+	if (cnt.collectible != elements.collectible || cnt.exit != 1)
 	{
-		if (x == end.x && y == end.y)
-		{
-			free_all(queue);
-			free_visited(vis, vis->height);
-			return (1);
-		}
-		check_neighbors(queue, vis, map, (t_pos){x, y});
-	}
-	free_all(queue);
-	free_visited(vis, vis->height);
-	return (0);
-}
-
-int	is_path_valid(char **map)
-{
-	t_pos	*player;
-	t_pos	*exit;
-	int		result;
-
-	player = position(PLAYER, map);
-	exit = position(EXIT, map);
-	if (!player || !exit)
-	{
-		free(player);
-		free(exit);
+		ft_putstr("Couldn't find a valid path");
 		return (0);
 	}
-	result = bfs_find_path(map, *player, *exit);
-	free(player);
-	free(exit);
-	return (result);
+	return (1);
 }

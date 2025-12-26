@@ -6,12 +6,12 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 13:27:05 by sopelet           #+#    #+#             */
-/*   Updated: 2025/12/22 16:52:12 by sopelet          ###   ########.fr       */
+/*   Updated: 2025/12/26 20:39:44 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
 #include "libft.h"
+#include "so_long.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -19,6 +19,7 @@ int	main(void)
 {
 	char **map;
 	int i;
+	char **dup;
 
 	i = 0;
 	map = parse_map("map.ber");
@@ -35,21 +36,23 @@ int	main(void)
 		exit(1);
 	if (!elem_check(map))
 		exit(1);
-	if (!is_path_valid(map))
-	{
-		ft_putstr("No valid path");
+	dup = dup_map(map);
+	if (!flood_fill(dup))
 		exit(1);
+	while (dup[i])
+	{
+		ft_printf("%s\n", dup[i]);
+		i++;
 	}
+	i = 0;
 	while (map[i])
 	{
 		ft_printf("%s\n", map[i]);
 		i++;
 	}
-	while (i > 0)
-	{
-		free(map[i]);
-		i--;
-	}
+	i = 0;
+	while (map[i])
+		free(map[i++]);
 	free(map);
 	return (0);
 }

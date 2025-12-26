@@ -18,9 +18,7 @@ SRC_FILES	= parsing/parse_map.c \
 			  parsing/map_check_shape.c \
 			  parsing/map_check_elem.c \
 			  parsing/path_finding.c \
-			  parsing/visited_helper.c \
-			  parsing/queue_helper.c \
-			  parsing/map_helper.c \
+			  parsing/map_helper.c
 
 OBJ_FILES	= $(SRC_FILES:.c=.o)
 

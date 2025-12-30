@@ -9,16 +9,20 @@ MLX_DIR		= ./mlx_linux/
 MLX			= ${MLX_DIR}libmlx_Linux.a
 MLX_FLAGS	= -L${MLX_DIR} -lmlx -lXext -lX11 -lm
 INCLUDE_DIR	= .
-OBJ_DIRS	= parsing
+OBJ_DIRS	= sources
 
 ###########################################
 #### SOURCES
-SRC_FILES	= parsing/parse_map.c \
-			  parsing/main.c \
-			  parsing/map_check_shape.c \
-			  parsing/map_check_elem.c \
-			  parsing/path_finding.c \
-			  parsing/map_helper.c
+SRC_FILES	= sources/parse_map.c \
+			  sources/so_long.c \
+			  sources/map_check_shape.c \
+			  sources/map_check_elem.c \
+			  sources/path_finding.c \
+			  sources/map_helper.c \
+			  sources/free.c \
+			  sources/render.c \
+			  sources/key_handling.c \
+			  sources/load_sprites.c \
 
 OBJ_FILES	= $(SRC_FILES:.c=.o)
 

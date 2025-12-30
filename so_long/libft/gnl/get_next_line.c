@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 15:33:24 by sopelet           #+#    #+#             */
-/*   Updated: 2025/12/17 15:05:06 by sopelet          ###   ########.fr       */
+/*   Updated: 2025/12/30 15:42:06 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	*fill_stash(int fd, char *stash)
 			return (NULL);
 		}
 		buffer[byte_read] = '\0';
-		tmp_stash = ft_strjoin(stash, buffer);
+		tmp_stash = ft_strjoin_gnl(stash, buffer);
 		free(stash);
 		stash = tmp_stash;
 	}

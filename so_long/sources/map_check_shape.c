@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 12:46:36 by sopelet           #+#    #+#             */
-/*   Updated: 2025/12/22 16:01:18 by sopelet          ###   ########.fr       */
+/*   Updated: 2025/12/29 16:36:39 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int	check_walls_middle(char **map)
 			ft_putstr("Error\nMap is not surrended by walls");
 			return (0);
 		}
-		ft_printf("i value : %d\n", i);
 		i++;
 	}
 	return (1);

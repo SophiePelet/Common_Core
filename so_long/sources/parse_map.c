@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 16:07:26 by sopelet           #+#    #+#             */
-/*   Updated: 2025/12/22 15:26:50 by sopelet          ###   ########.fr       */
+/*   Updated: 2025/12/29 19:34:23 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,6 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
-
-static char	**free_map(char **map, int index)
-{
-	int	i;
-
-	i = 0;
-	while (i < index)
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-	return (NULL);
-}
 
 char	**read_map(int fd, int nb_line)
 {
@@ -70,21 +56,32 @@ static char	**remove_line_break(char **map_data)
 	return (map_data);
 }
 
-char	**parse_map(const char *file_path)
+static int	count_lines(const char *file_path, int *nb_line)
 {
-	int		fd;
-	int		nb_line;
-	char	**map;
-	char	**clean_map;
+	int	fd;
 
 	fd = open(file_path, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putstr("Couldn't open file");
-		exit(1);
+		ft_putstr("Error\nCouldn't open file\n");
+		return (-1);
 	}
-	nb_line = count_map_line(fd);
+	*nb_line = count_map_line(fd);
 	close(fd);
+	if (*nb_line == 0)
+	{
+		ft_putstr("Error\nEmpty file or not readable\n");
+		return (-1);
+	}
+	return (0);
+}
+
+static char	**open_clean_map(const char *file_path, int nb_line)
+{
+	int		fd;
+	char	**map;
+	char	**clean_map;
+
 	fd = open(file_path, O_RDONLY);
 	map = read_map(fd, nb_line);
 	close(fd);
@@ -95,4 +92,13 @@ char	**parse_map(const char *file_path)
 	}
 	clean_map = remove_line_break(map);
 	return (clean_map);
+}
+
+char	**parse_map(const char *file_path)
+{
+	int	nb_line;
+
+	if (count_lines(file_path, &nb_line) < 0)
+		exit(1);
+	return (open_clean_map(file_path, nb_line));
 }

@@ -18,19 +18,19 @@ void	load_player(t_map *map)
 	int	height;
 
 	map->gamer_front.xpm_ptr = mlx_xpm_file_to_image(map->mlx_ptr,
-			"textures/swordsman_front.xpm", &width, &height);
+			"textures/girl_front.xpm", &width, &height);
 	map->gamer_front.width = width;
 	map->gamer_front.height = height;
 	map->gamer_back.xpm_ptr = mlx_xpm_file_to_image(map->mlx_ptr,
-			"textures/swordsman_back.xpm", &width, &height);
+			"textures/girl_back.xpm", &width, &height);
 	map->gamer_back.width = width;
 	map->gamer_back.height = height;
 	map->gamer_left.xpm_ptr = mlx_xpm_file_to_image(map->mlx_ptr,
-			"textures/swordsman_left.xpm", &width, &height);
+			"textures/girl_left.xpm", &width, &height);
 	map->gamer_left.width = width;
 	map->gamer_left.height = height;
 	map->gamer_right.xpm_ptr = mlx_xpm_file_to_image(map->mlx_ptr,
-			"textures/swordsman_right.xpm", &width, &height);
+			"textures/girl_right.xpm", &width, &height);
 	map->gamer_right.width = width;
 	map->gamer_right.height = height;
 }
@@ -53,7 +53,7 @@ void	load_coll(t_map *map)
 	int	height;
 
 	map->coll.xpm_ptr = mlx_xpm_file_to_image(map->mlx_ptr,
-			"textures/collectible.xpm", &width, &height);
+			"textures/cake.xpm", &width, &height);
 	map->coll.width = width;
 	map->coll.height = height;
 }

@@ -1,7 +1,7 @@
 ##########################################################
 #### NAMES
 NAME			= libft.a
-CFLAGS			= -Wall -Wextra -Werror -I${INCLUDE_DIR} -fPIE
+CFLAGS			= -Wall -Wextra -Werror -I${INCLUDE_DIR}
 CC				= cc
 AR				= ar
 ARFLAGS			= rcs

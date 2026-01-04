@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 16:00:00 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/04 18:24:01 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/04 18:35:51 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	load_coll(t_map *map)
 
 void	load_floor_wall(t_map *map)
 {
-	int width;
-	int height;
+	int	width;
+	int	height;
 
 	map->floor.xpm_ptr = mlx_xpm_file_to_image(map->mlx_ptr,
 			"textures/floor.xpm", &width, &height);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 13:27:05 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/02 18:28:16 by sophie           ###   ########.fr       */
+/*   Updated: 2026/01/04 18:09:41 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ int	main(int ac, char **av)
 		render_map(map);
 		nb_moves(map);
 		mlx_hook(map->win_ptr, 2, (1L << 0), handle_key, map);
+		mlx_hook(map->win_ptr, 17, 0L, handle_closing, map);
 		mlx_loop(map->mlx_ptr);
+		free_all(map);
 	}
 	return (0);
 }

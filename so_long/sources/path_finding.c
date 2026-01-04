@@ -42,7 +42,7 @@ t_elem	fill(char **tab, t_map_dim size, int row, int col)
 	}
 	if (row < 0 || col < 0 || row >= size.height || col >= size.width)
 		return (elements);
-	if (tab[row][col] == 'V' || tab[row][col] == WALL)
+	if (tab[row][col] == 'V' || tab[row][col] == WALL || tab[row][col] == EXIT)
 		return (elements);
 	if (tab[row][col] == COLLECTIBLE)
 		elements.collectible++;

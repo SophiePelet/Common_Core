@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 21:14:00 by sopelet           #+#    #+#             */
-/*   Updated: 2025/12/30 17:48:22 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/04 16:53:30 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,27 @@ char	**free_map(char **map, int index)
 	}
 	free(map);
 	return (NULL);
+}
+
+void	free_image(t_map *map)
+{
+	mlx_destroy_image(map->mlx_ptr, map->exit.xpm_ptr);
+	mlx_destroy_image(map->mlx_ptr, map->floor.xpm_ptr);
+	mlx_destroy_image(map->mlx_ptr, map->gamer_back.xpm_ptr);
+	mlx_destroy_image(map->mlx_ptr, map->gamer_front.xpm_ptr);
+	mlx_destroy_image(map->mlx_ptr, map->gamer_right.xpm_ptr);
+	mlx_destroy_image(map->mlx_ptr, map->gamer_left.xpm_ptr);
+	mlx_destroy_image(map->mlx_ptr, map->wall.xpm_ptr);
+	mlx_destroy_image(map->mlx_ptr, map->coll.xpm_ptr);
+}
+
+void	free_all(t_map *map)
+{
+	free_image(map);
+	mlx_clear_window(map->mlx_ptr, map->win_ptr);
+	mlx_destroy_window(map->mlx_ptr, map->win_ptr);
+	mlx_destroy_display(map->mlx_ptr);
+	free_dup(map->grid);
+	free(map->mlx_ptr);
+	free(map);
 }

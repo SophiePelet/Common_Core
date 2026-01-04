@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 16:10:18 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/02 18:07:32 by sophie           ###   ########.fr       */
+/*   Updated: 2026/01/04 18:19:10 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct s_map
 
 // Parsing and path finding
 char			**parse_map(const char *file_path);
+int				check_ber(const char *file_path);
 int				check_rect(char **map_data);
 int				check_walls(char **map);
 int				check_walls_middle(char **map);
@@ -107,20 +108,29 @@ char			**dup_map(char **map);
 t_map			*get_map(const char *path);
 t_map			*build_map(char **map, char **dup, t_map_dim size,
 					t_elem counts);
-void			free_dup(char **dup);
-char			**free_map(char **map, int index);
 
-// key handling and map rendering
+// Freeing
+char			**free_map(char **map, int index);
+void			free_dup(char **map);
+void			free_all(t_map *map);
+
+// Key handling and map rendering
 int				handle_key(int key, t_map *map);
+int				handle_closing(t_map *map);
 void			render_grid(t_map *map, int y, int x);
 void			render_map(t_map *map);
 void			render_fix(t_map *map, int y, int x);
 t_img			player_sprite(t_map *map);
 void			put_sprite(t_map *map, t_img image, int y, int x);
 void			nb_moves(t_map *map);
+
+// Loading sprites
 void			load_floor_wall(t_map *map);
 void			load_coll(t_map *map);
-void			load_player(t_map *map);
+void			load_player_front(t_map *map);
+void			load_player_back(t_map *map);
+void			load_player_right(t_map *map);
+void			load_player_left(t_map *map);
 void			load_exit(t_map *map);
 void			load_sprites(t_map *map);
 

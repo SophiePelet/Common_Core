@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 16:07:26 by sopelet           #+#    #+#             */
-/*   Updated: 2025/12/29 19:34:23 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/04 17:05:55 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static char	**remove_line_break(char **map_data)
 			map_data[i][j] = '\0';
 		i++;
 	}
+	map_data[i] = NULL;
 	return (map_data);
 }
 
@@ -98,6 +99,8 @@ char	**parse_map(const char *file_path)
 {
 	int	nb_line;
 
+	if (!check_ber(file_path))
+		exit(1);
 	if (count_lines(file_path, &nb_line) < 0)
 		exit(1);
 	return (open_clean_map(file_path, nb_line));

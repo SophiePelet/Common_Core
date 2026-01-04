@@ -66,7 +66,23 @@ t_map	*build_map(char **map, char **dup, t_map_dim size, t_elem counts)
 	map_struct->grid = map;
 	map_struct->size = size;
 	map_struct->elem_counts = counts;
+	player.player_sprite = P_FRONT;
 	map_struct->player = player;
 	map_struct->moves = 0;
 	return (map_struct);
+}
+
+int	check_ber(const char *file_path)
+{
+	size_t	len;
+
+	if (!file_path)
+		return (0);
+	len = ft_strlen(file_path);
+	if (len < 4 || ft_strncmp(file_path + len - 4, ".ber", 4) != 0)
+	{
+		ft_putstr("Error\nWrong extension for the map\n");
+		return (0);
+	}
+	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handling.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 21:12:58 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/02 18:20:30 by sophie           ###   ########.fr       */
+/*   Updated: 2026/01/04 16:58:41 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	update_player(t_map *map, int next_y, int next_x, int direction)
 	if (map->grid[next_y][next_x] == EXIT && map->elem_counts.collectible == 0)
 	{
 		ft_putstr("VICTORY\n");
+		free_all(map);
 		exit(0);
 	}
 	else if (map->grid[next_y][next_x] == FLOOR
@@ -57,9 +58,17 @@ int	handle_key(int key, t_map *map)
 	else if (key == 65307)
 	{
 		ft_putstr("Closing...\n");
+		free_all(map);
 		exit(0);
 	}
 	render_fix(map, current_y, current_x);
 	render_fix(map, map->player.y, map->player.x);
 	return (0);
+}
+
+int	handle_closing(t_map *map)
+{
+	ft_putstr("Closing window\n");
+	free_all(map);
+	exit(0);
 }

@@ -23,6 +23,7 @@ SRC_FILES	= sources/parse_map.c \
 			  sources/render.c \
 			  sources/key_handling.c \
 			  sources/load_sprites.c \
+			  sources/load_player.c \
 
 OBJ_FILES	= $(SRC_FILES:.c=.o)
 

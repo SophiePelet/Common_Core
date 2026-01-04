@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_elem.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 17:12:22 by sopelet           #+#    #+#             */
-/*   Updated: 2025/12/22 15:58:56 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/02 18:30:28 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	elem_check_counts(t_elem cnt)
 {
 	if (cnt.collectible < 1 || cnt.exit != 1 || cnt.player != 1)
 	{
-		ft_putstr("Error\nWrong number of elements");
+		ft_putstr("Error\nWrong number of elements\n");
 		return (0);
 	}
 	return (1);

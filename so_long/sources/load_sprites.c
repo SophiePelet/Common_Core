@@ -41,7 +41,7 @@ void	load_exit(t_map *map)
 	int	width;
 	int	height;
 
-	map->exit.xpm_ptr = mlx_xpm_file_to_image(map->mlx_ptr, "textures/door.xpm",
+	map->exit.xpm_ptr = mlx_xpm_file_to_image(map->mlx_ptr, "textures/exit.xpm",
 			&width, &height);
 	map->exit.width = width;
 	map->exit.height = height;

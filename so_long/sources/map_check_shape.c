@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_shape.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 12:46:36 by sopelet           #+#    #+#             */
-/*   Updated: 2025/12/29 16:36:39 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/02 22:52:24 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	check_walls(char **map)
 	{
 		if (map[0][j] != WALL)
 		{
-			ft_putstr("Error\nMap is not surrended by walls");
+			ft_putstr("Error\nMap is not surrended by walls\n");
 			return (0);
 		}
 		j++;
@@ -75,12 +75,10 @@ int	check_walls(char **map)
 int	check_walls_middle(char **map)
 {
 	size_t	i;
-	size_t	j;
 	size_t	line_len;
 	size_t	size;
 
 	i = 1;
-	j = 0;
 	size = size_map(map);
 	while (i < (size - 1))
 	{

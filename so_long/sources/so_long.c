@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 13:27:05 by sopelet           #+#    #+#             */
-/*   Updated: 2025/12/30 19:16:05 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/02 18:28:16 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,11 @@ void	nb_moves(t_map *map)
 	char	*moves;
 	char	*steps;
 
+	put_sprite(map, map->wall, 0, 0);
+	put_sprite(map, map->wall, 0, 1);
 	moves = ft_itoa(map->moves);
 	steps = ft_strjoin("Steps : ", moves);
-	mlx_string_put(map->mlx_ptr, map->win_ptr, 10, 10, 0xFFFFFF, steps);
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 10, 10, 0xcb8dc0ff, steps);
 	free(moves);
 	free(steps);
 }
@@ -64,6 +66,7 @@ int	main(int ac, char **av)
 				NAME);
 		load_sprites(map);
 		render_map(map);
+		nb_moves(map);
 		mlx_hook(map->win_ptr, 2, (1L << 0), handle_key, map);
 		mlx_loop(map->mlx_ptr);
 	}

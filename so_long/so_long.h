@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 16:10:18 by sopelet           #+#    #+#             */
-/*   Updated: 2025/12/30 19:21:29 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/02 18:07:32 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 
 // Window
 # define NAME "SO_LONG"
-# define SPRITE_SIZE 16
+# define SPRITE_SIZE 64
 # define P_FRONT 0
 # define P_BACK 1
 # define P_RIGHT 2

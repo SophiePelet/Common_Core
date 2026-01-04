@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handling.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 21:12:58 by sopelet           #+#    #+#             */
-/*   Updated: 2025/12/30 19:17:41 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/02 18:20:30 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	update_player(t_map *map, int next_y, int next_x, int direction)
 		map->player.x = next_x;
 		map->grid[next_y][next_x] = PLAYER;
 		map->moves++;
+		nb_moves(map);
 	}
 }
 

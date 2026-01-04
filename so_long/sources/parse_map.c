@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 16:07:26 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/04 17:05:55 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/04 19:35:51 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ char	**read_map(int fd, int nb_line)
 	if (!map_data)
 		return (NULL);
 	i = 0;
-	line = get_next_line(fd);
+	line = get_next_line(fd, 0);
 	while (line != NULL)
 	{
 		map_data[i++] = line;
-		line = get_next_line(fd);
+		line = get_next_line(fd, 0);
 		if (i > nb_line)
-			return (free_map(map_data, i));
+			return (free(line), free_map(map_data, i), NULL);
 	}
 	map_data[i] = NULL;
 	return (map_data);
@@ -86,6 +86,7 @@ static char	**open_clean_map(const char *file_path, int nb_line)
 	fd = open(file_path, O_RDONLY);
 	map = read_map(fd, nb_line);
 	close(fd);
+	get_next_line(fd, 1);
 	if (!map)
 	{
 		ft_putstr("Error reading map\n");

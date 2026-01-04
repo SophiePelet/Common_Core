@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 18:34:27 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/04 18:34:28 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/04 19:29:05 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ size_t	count_map_line(int fd)
 	char	*line;
 
 	nb_line = 0;
-	line = get_next_line(fd);
+	line = get_next_line(fd, 0);
 	while (line != NULL)
 	{
 		free(line);
-		line = get_next_line(fd);
+		line = get_next_line(fd, 0);
 		nb_line++;
 	}
 	return (nb_line);

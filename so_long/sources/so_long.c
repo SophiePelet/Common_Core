@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 13:27:05 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/04 18:09:41 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/04 19:52:13 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,18 @@ t_map	*get_map(const char *path)
 	map = parse_map(path);
 	if (!check_rect(map) || !check_walls(map) || !check_walls_middle(map)
 		|| !elem_check(map))
+	{
+		free_dup(map);
 		exit(1);
+	}
 	size = map_dimension(map);
 	counts = elem_count(map);
 	dup = dup_map(map);
 	if (!dup)
 		exit(1);
 	map_struct = build_map(map, dup, size, counts);
+	if (!map_struct)
+		return (free_dup(map), exit(1), NULL);
 	free_dup(dup);
 	return (map_struct);
 }

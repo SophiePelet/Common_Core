@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 15:33:24 by sopelet           #+#    #+#             */
-/*   Updated: 2025/12/30 15:42:06 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/04 18:59:25 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,15 @@ static char	*clean_stash(char *filled_stash)
 	return (stash_remainder);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int clean)
 {
 	static char	*stash;
 	char		*filled_stash;
 	char		*line;
 	char		*new_stash;
 
+	if (clean)
+		return (free(stash), NULL);
 	filled_stash = fill_stash(fd, stash);
 	if (!filled_stash)
 	{

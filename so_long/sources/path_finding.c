@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 18:35:58 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/04 18:35:59 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/04 19:49:16 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ t_player	position(char c, char **map)
 	return (pos);
 }
 
+#include <stdio.h>
+
 t_elem	fill(char **tab, t_map_dim size, int row, int col)
 {
 	static t_elem	elements;
@@ -74,9 +76,10 @@ int	flood_fill(char **tab, t_map_dim size, t_player start, t_elem expected)
 
 	fill(NULL, size, 0, 0);
 	elements = fill(tab, size, start.y, start.x);
-	if (expected.collectible != elements.collectible || expected.exit != 1)
+	if (expected.collectible != elements.collectible || elements.exit != 1)
 	{
 		ft_putstr("Couldn't find a valid path");
+		free_dup(tab);
 		return (0);
 	}
 	return (1);

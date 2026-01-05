@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_elem.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 17:12:22 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/02 18:30:28 by sophie           ###   ########.fr       */
+/*   Updated: 2026/01/05 18:59:30 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,19 @@ int	elem_check(char **map)
 
 	cnt = elem_count(map);
 	return (elem_check_counts(cnt));
+}
+
+int	check_ber(const char *file_path)
+{
+	size_t	len;
+
+	if (!file_path)
+		return (0);
+	len = ft_strlen(file_path);
+	if (len < 4 || ft_strncmp(file_path + len - 4, ".ber", 4) != 0)
+	{
+		ft_putstr("Error\nWrong extension for the map\n");
+		return (0);
+	}
+	return (1);
 }

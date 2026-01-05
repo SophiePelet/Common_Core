@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 16:07:26 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/05 17:56:04 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/05 19:15:03 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static int	count_lines(const char *file_path, int *nb_line)
 		return (-1);
 	}
 	*nb_line = count_map_line(fd);
+	get_next_line(fd, 1);
 	close(fd);
 	if (*nb_line == 0)
 	{
@@ -85,8 +86,8 @@ static char	**open_clean_map(const char *file_path, int nb_line)
 
 	fd = open(file_path, O_RDONLY);
 	map = read_map(fd, nb_line);
-	close(fd);
 	get_next_line(fd, 1);
+	close(fd);
 	if (!map)
 	{
 		ft_putstr("Error reading map\n");

@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 21:14:00 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/05 17:51:58 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/05 19:35:49 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,25 +43,67 @@ char	**free_map(char **map, int index)
 	return (NULL);
 }
 
+static void	free_player(t_map *map)
+{
+	if (map->gamer_back.xpm_ptr)
+	{
+		mlx_destroy_image(map->mlx_ptr, map->gamer_back.xpm_ptr);
+		map->gamer_back.xpm_ptr = NULL;
+	}
+	if (map->gamer_front.xpm_ptr)
+	{
+		mlx_destroy_image(map->mlx_ptr, map->gamer_front.xpm_ptr);
+		map->gamer_front.xpm_ptr = NULL;
+	}
+	if (map->gamer_right.xpm_ptr)
+	{
+		mlx_destroy_image(map->mlx_ptr, map->gamer_right.xpm_ptr);
+		map->gamer_right.xpm_ptr = NULL;
+	}
+	if (map->gamer_left.xpm_ptr)
+	{
+		mlx_destroy_image(map->mlx_ptr, map->gamer_left.xpm_ptr);
+		map->gamer_left.xpm_ptr = NULL;
+	}
+}
+
 void	free_image(t_map *map)
 {
-	mlx_destroy_image(map->mlx_ptr, map->exit.xpm_ptr);
-	mlx_destroy_image(map->mlx_ptr, map->floor.xpm_ptr);
-	mlx_destroy_image(map->mlx_ptr, map->gamer_back.xpm_ptr);
-	mlx_destroy_image(map->mlx_ptr, map->gamer_front.xpm_ptr);
-	mlx_destroy_image(map->mlx_ptr, map->gamer_right.xpm_ptr);
-	mlx_destroy_image(map->mlx_ptr, map->gamer_left.xpm_ptr);
-	mlx_destroy_image(map->mlx_ptr, map->wall.xpm_ptr);
-	mlx_destroy_image(map->mlx_ptr, map->coll.xpm_ptr);
+	if (map->wall.xpm_ptr)
+	{
+		mlx_destroy_image(map->mlx_ptr, map->wall.xpm_ptr);
+		map->wall.xpm_ptr = NULL;
+	}
+	if (map->floor.xpm_ptr)
+	{
+		mlx_destroy_image(map->mlx_ptr, map->floor.xpm_ptr);
+		map->floor.xpm_ptr = NULL;
+	}
+	if (map->exit.xpm_ptr)
+	{
+		mlx_destroy_image(map->mlx_ptr, map->exit.xpm_ptr);
+		map->exit.xpm_ptr = NULL;
+	}
+	if (map->coll.xpm_ptr)
+	{
+		mlx_destroy_image(map->mlx_ptr, map->coll.xpm_ptr);
+		map->coll.xpm_ptr = NULL;
+	}
+	free_player(map);
 }
 
 void	free_all(t_map *map)
 {
+	if (!map)
+		return ;
 	free_image(map);
-	mlx_clear_window(map->mlx_ptr, map->win_ptr);
-	mlx_destroy_window(map->mlx_ptr, map->win_ptr);
-	mlx_destroy_display(map->mlx_ptr);
+	if (map->win_ptr)
+		mlx_destroy_window(map->mlx_ptr, map->win_ptr);
+	if (map->mlx_ptr)
+	{
+		mlx_destroy_display(map->mlx_ptr);
+		free(map->mlx_ptr);
+	}
 	free_dup(map->grid);
-	free(map->mlx_ptr);
 	free(map);
 }

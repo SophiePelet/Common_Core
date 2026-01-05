@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 18:34:27 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/05 17:55:40 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/05 19:09:06 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,18 @@ char	**dup_map(char **map)
 	return (dup);
 }
 
+static void	init_images(t_map *map_struct)
+{
+	map_struct->coll.xpm_ptr = NULL;
+	map_struct->gamer_front.xpm_ptr = NULL;
+	map_struct->gamer_back.xpm_ptr = NULL;
+	map_struct->gamer_right.xpm_ptr = NULL;
+	map_struct->gamer_left.xpm_ptr = NULL;
+	map_struct->wall.xpm_ptr = NULL;
+	map_struct->exit.xpm_ptr = NULL;
+	map_struct->floor.xpm_ptr = NULL;
+}
+
 t_map	*build_map(char **map, char **dup, t_map_dim size, t_elem counts)
 {
 	t_map		*map_struct;
@@ -74,7 +86,7 @@ t_map	*build_map(char **map, char **dup, t_map_dim size, t_elem counts)
 		free_dup(map);
 		exit(1);
 	}
-	map_struct = malloc(sizeof(t_map));
+	map_struct = ft_calloc(1, sizeof(t_map));
 	if (!map_struct)
 	{
 		free_dup(map);
@@ -86,20 +98,7 @@ t_map	*build_map(char **map, char **dup, t_map_dim size, t_elem counts)
 	player.player_sprite = P_FRONT;
 	map_struct->player = player;
 	map_struct->moves = 0;
+	init_images(map_struct);
 	return (map_struct);
 }
 
-int	check_ber(const char *file_path)
-{
-	size_t	len;
-
-	if (!file_path)
-		return (0);
-	len = ft_strlen(file_path);
-	if (len < 4 || ft_strncmp(file_path + len - 4, ".ber", 4) != 0)
-	{
-		ft_putstr("Error\nWrong extension for the map\n");
-		return (0);
-	}
-	return (1);
-}

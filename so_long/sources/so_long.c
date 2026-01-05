@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 13:27:05 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/05 17:55:46 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/05 19:25:37 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,11 @@ int	main(int ac, char **av)
 		map->mlx_ptr = mlx_init();
 		map->win_ptr = mlx_new_window(map->mlx_ptr, win_width, win_height,
 				NAME);
-		load_sprites(map);
+		if (!load_sprites(map))
+		{
+			ft_putstr("Error: Failed to load sprites\n");
+			return (free_all(map), 1);
+		}
 		render_map(map);
 		nb_moves(map);
 		mlx_hook(map->win_ptr, 2, (1L << 0), handle_key, map);

@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 16:10:18 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/05 17:52:19 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/05 18:13:50 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,13 +126,13 @@ void			put_sprite(t_map *map, t_img image, int y, int x);
 void			nb_moves(t_map *map);
 
 // Loading sprites
-void			load_floor_wall(t_map *map);
-void			load_coll(t_map *map);
-void			load_player_front(t_map *map);
-void			load_player_back(t_map *map);
-void			load_player_right(t_map *map);
-void			load_player_left(t_map *map);
-void			load_exit(t_map *map);
-void			load_sprites(t_map *map);
+int				load_floor_wall(t_map *map);
+int				load_coll(t_map *map);
+int				load_player_front(t_map *map);
+int				load_player_back(t_map *map);
+int				load_player_right(t_map *map);
+int				load_player_left(t_map *map);
+int				load_exit(t_map *map);
+int				load_sprites(t_map *map);
 
 #endif

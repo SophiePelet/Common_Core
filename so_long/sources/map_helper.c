@@ -6,11 +6,10 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 18:34:27 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/05 19:09:06 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/05 20:11:02 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "so_long.h"
 
 size_t	count_map_line(int fd)
@@ -101,4 +100,3 @@ t_map	*build_map(char **map, char **dup, t_map_dim size, t_elem counts)
 	init_images(map_struct);
 	return (map_struct);
 }
-

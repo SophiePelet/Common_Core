@@ -1,7 +1,7 @@
 ###########################################
 #### NAMES
 NAME		= so_long
-CFLAGS		= -Wall -Wextra -Werror -I${LIBFT_DIR} -I${MLX_DIR} -I${INCLUDE_DIR} ##-L/usr/lib
+CFLAGS		= -Wall -Wextra -Werror -I${LIBFT_DIR} -I${MLX_DIR} -I${INCLUDE_DIR}
 CC			= cc
 LIBFT_DIR	= ./libft/
 LIBFT		= ${LIBFT_DIR}libft.a
@@ -10,7 +10,6 @@ MLX			= ${MLX_DIR}libmlx_Linux.a
 MLX_FLAGS	= -L${MLX_DIR} -lmlx -lXext -lX11 -lm
 INCLUDE_DIR	= .
 OBJ_DIRS	= sources
-
 ###########################################
 #### SOURCES
 SRC_FILES	= sources/parse_map.c \

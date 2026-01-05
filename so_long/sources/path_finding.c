@@ -6,13 +6,11 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 18:35:58 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/05 18:28:51 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/05 20:07:14 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "so_long.h"
-#include <stdlib.h>
 
 t_player	position(char c, char **map)
 {
@@ -77,7 +75,7 @@ int	flood_fill(char **tab, t_map_dim size, t_player start, t_elem expected)
 	elements = fill(tab, size, start.y, start.x);
 	if (expected.collectible != elements.collectible || elements.exit != 1)
 	{
-		ft_putstr("Couldn't find a valid path\n");
+		ft_putstr("Error\nCouldn't find a valid path\n");
 		free_dup(tab);
 		return (0);
 	}

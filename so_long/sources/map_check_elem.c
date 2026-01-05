@@ -6,12 +6,11 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 17:12:22 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/05 18:59:30 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/05 20:06:09 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "libft.h"
 
 t_elem	elem_count(char **map)
 {

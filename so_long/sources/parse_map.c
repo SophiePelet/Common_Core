@@ -6,15 +6,11 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 16:07:26 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/05 19:15:03 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/05 20:11:20 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "libft.h"
-#include <fcntl.h>
-#include <stdlib.h>
-#include <unistd.h>
 
 char	**read_map(int fd, int nb_line)
 {

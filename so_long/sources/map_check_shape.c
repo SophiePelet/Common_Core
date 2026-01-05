@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_shape.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 12:46:36 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/02 22:52:24 by sophie           ###   ########.fr       */
+/*   Updated: 2026/01/05 20:06:45 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "libft.h"
 
 int	check_rect(char **map_data)
 {

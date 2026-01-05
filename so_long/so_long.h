@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 16:10:18 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/05 18:13:50 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/05 20:06:37 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <limits.h>
 # include <mlx.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 // Elements
 # define FLOOR '0'

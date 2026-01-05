@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 16:07:26 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/04 19:35:51 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/05 17:53:25 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 
 char	**read_map(int fd, int nb_line)
 {

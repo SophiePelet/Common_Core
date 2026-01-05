@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 18:35:58 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/04 19:49:16 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/05 17:53:30 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ t_player	position(char c, char **map)
 	return (pos);
 }
 
-#include <stdio.h>
-
 t_elem	fill(char **tab, t_map_dim size, int row, int col)
 {
 	static t_elem	elements;
@@ -57,11 +55,13 @@ t_elem	fill(char **tab, t_map_dim size, int row, int col)
 	if (row < 0 || col < 0 || row >= size.height || col >= size.width)
 		return (elements);
 	if (tab[row][col] == 'V' || tab[row][col] == WALL || tab[row][col] == EXIT)
+	{
+		if (tab[row][col] == EXIT)
+			elements.exit = 1;
 		return (elements);
+	}
 	if (tab[row][col] == COLLECTIBLE)
 		elements.collectible++;
-	if (tab[row][col] == EXIT)
-		elements.exit++;
 	tab[row][col] = 'V';
 	fill(tab, size, row - 1, col);
 	fill(tab, size, row + 1, col);
@@ -69,6 +69,9 @@ t_elem	fill(char **tab, t_map_dim size, int row, int col)
 	fill(tab, size, row, col + 1);
 	return (elements);
 }
+
+
+#include <stdio.h>
 
 int	flood_fill(char **tab, t_map_dim size, t_player start, t_elem expected)
 {

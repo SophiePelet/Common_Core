@@ -6,13 +6,14 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 13:27:05 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/04 19:52:13 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/05 17:53:42 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "so_long.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 t_map	*get_map(const char *path)
 {

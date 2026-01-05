@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 16:10:18 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/04 18:19:10 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/05 17:52:19 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ t_map			*build_map(char **map, char **dup, t_map_dim size,
 
 // Freeing
 char			**free_map(char **map, int index);
+void			free_image(t_map *map);
 void			free_dup(char **map);
 void			free_all(t_map *map);
 

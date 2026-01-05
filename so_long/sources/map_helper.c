@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 18:34:27 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/04 19:29:05 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/05 17:17:42 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,16 @@ t_map	*build_map(char **map, char **dup, t_map_dim size, t_elem counts)
 	if (player.x < 0 || player.y < 0)
 		exit(1);
 	if (!flood_fill(dup, size, player, counts))
+	{
+		free_dup(map);
 		exit(1);
+	}
 	map_struct = malloc(sizeof(t_map));
 	if (!map_struct)
+	{
+		free_dup(map);
 		exit(1);
+	}
 	map_struct->grid = map;
 	map_struct->size = size;
 	map_struct->elem_counts = counts;

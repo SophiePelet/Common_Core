@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 21:14:00 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/04 18:35:17 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/05 17:51:58 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,13 @@ void	free_dup(char **dup)
 	if (!dup)
 		return ;
 	while (dup[i])
-		free(dup[i++]);
+	{
+		free(dup[i]);
+		dup[i] = NULL;
+		i++;
+	}
 	free(dup);
+	dup = NULL;
 }
 
 char	**free_map(char **map, int index)

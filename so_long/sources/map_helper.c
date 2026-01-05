@@ -6,13 +6,12 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 18:34:27 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/05 17:17:42 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/05 17:55:40 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "so_long.h"
-#include <stdio.h>
 
 size_t	count_map_line(int fd)
 {

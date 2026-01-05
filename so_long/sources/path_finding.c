@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 18:35:58 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/05 17:53:30 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/05 17:55:55 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,6 @@ t_elem	fill(char **tab, t_map_dim size, int row, int col)
 	fill(tab, size, row, col + 1);
 	return (elements);
 }
-
-
-#include <stdio.h>
 
 int	flood_fill(char **tab, t_map_dim size, t_player start, t_elem expected)
 {

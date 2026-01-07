@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 12:46:36 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/05 20:06:45 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/07 15:29:23 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	check_walls(char **map)
 	{
 		if (map[0][j] != WALL)
 		{
-			ft_putstr("Error\nMap is not surrended by walls\n");
+			ft_putstr("Error\nMap is not surrounded by walls\n");
 			return (0);
 		}
 		j++;
@@ -63,7 +63,7 @@ int	check_walls(char **map)
 	{
 		if (map[size - 1][j] != WALL)
 		{
-			ft_putstr("Error\nMap is not surrended by walls");
+			ft_putstr("Error\nMap is not surrounded by walls\n");
 			return (0);
 		}
 		j++;
@@ -84,7 +84,7 @@ int	check_walls_middle(char **map)
 		line_len = ft_strlen(map[i]);
 		if (map[i][0] != WALL || map[i][line_len - 1] != WALL)
 		{
-			ft_putstr("Error\nMap is not surrended by walls");
+			ft_putstr("Error\nMap is not surrounded by walls\n");
 			return (0);
 		}
 		i++;

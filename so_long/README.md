@@ -9,7 +9,7 @@ While you can use pre-made sprites, I chose to design and create my own, to matc
 **Installation**
 * Git clone the repository
 * Make the program using
-```make``
+```make```
 * Run the code
 ```./so_long maps/chose_a_map```
 * I hope that you like pink ✨

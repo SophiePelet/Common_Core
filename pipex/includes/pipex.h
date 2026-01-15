@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 16:42:45 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/09 17:21:07 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/15 17:13:15 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,28 @@
 # include <sys/wait.h>  //for waitpid() and wait()
 # include <unistd.h>
 
-# define ERR_CMD_NOT_FOUND "Command not found"
-# define ERR_NO_FILE "Not such file or directory"
-# define ERR_EXECUTION "Couldn't execute"
-# define ERR_PERMISSION "Permission denied"
-# define ERR_FILE_OPEN "Couldn't open file"
-# define ERR_DUPLICATION "Error while duplicating"
+# define ERR_CMD_NOT_FOUND "Command not found\n"
+# define ERR_EXECUTION "Couldn't execute\n"
+# define ERR_DUPLICATION "Error while duplicating\n"
+# define ERR_MEM_ALLOCATION "Error while allocating memory\n"
+# define READ_END 0
+# define WRITE_END 1
 
-extern char	**g_env;
+typedef struct s_pipex
+{
+	char	**env;
+	int		fd1;
+	int		fd2;
+	char	*cmd1;
+	char	*cmd2;
+}			t_pipex;
 
-int		get_infile(const char *infile);
-int		get_outfile(const char *outfile);
-void	pipex(int fd1, int fd2, char *cmd1, char *cmd2);
-const char	*get_cmd_path(char *cmd, char *env[]);
-void	child_1(int fd1, char *cmd1, int pipe_write);
-void	child_2(int fd2, char *cmd2, int pipe_read);
-void	exe_cmd(char *cmd, char *env[]);
+int			get_infile(const char *infile);
+int			get_outfile(const char *outfile);
+void		pipex(t_pipex *data);
+char		*get_cmd_path(char *cmd, char **env, char **av);
+void		child_1(t_pipex *data, int fd1, char *cmd1, int pipe_write);
+void		child_2(t_pipex *data, int fd2, char *cmd2, int pipe_read);
+void		exe_cmd(char *cmd, char **env);
 
 #endif

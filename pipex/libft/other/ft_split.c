@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 16:42:43 by sopelet           #+#    #+#             */
-/*   Updated: 2025/12/03 17:53:21 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/14 21:08:01 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	*free_contents(const char **strs, int count)
 	return (NULL);
 }
 
-static char	**aled(char **split, const char *s, char c)
+static char	**fill_split(char **split, const char *s, char c)
 {
 	int	i;
 	int	j;
@@ -83,7 +83,7 @@ char	**ft_split(char const *s, char c)
 	new = malloc(sizeof(char *) * (cnt_words(s, c) + 1));
 	if (!new)
 		return (NULL);
-	if (aled(new, s, c) == NULL)
+	if (fill_split(new, s, c) == NULL)
 	{
 		free(new);
 		return (NULL);

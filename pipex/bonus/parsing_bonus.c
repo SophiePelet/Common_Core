@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/08 16:02:43 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/15 17:03:56 by sopelet          ###   ########.fr       */
+/*   Created: 2026/01/13 14:14:06 by sopelet           #+#    #+#             */
+/*   Updated: 2026/01/15 17:08:51 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/pipex.h"
+#include "includes/pipex_bonus.h"
 
 static char	*absolute_path(const char *cmd)
 {

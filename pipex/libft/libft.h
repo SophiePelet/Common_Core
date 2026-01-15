@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 14:55:32 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/09 16:29:14 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/14 16:25:02 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,11 @@ int					ft_pointer(void *ptr);
 int					ft_printf(const char *format, ...);
 
 // get_next_line
-char				*get_next_line(int fd);
+char				*get_next_line(int fd, int clean);
 size_t				ft_strlen(char const *str);
+size_t				ft_strlen_gnl(char const *str);
 char				*ft_strdup_index(char const *src, size_t index);
 char				*ft_strjoin(char const *s1, char const *s2);
+char				*ft_strjoin_gnl(char const *s1, char const *s2);
 void				*ft_calloc_gnl(size_t nmemb, size_t size);
 #endif

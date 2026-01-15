@@ -6,14 +6,14 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 15:39:54 by sopelet           #+#    #+#             */
-/*   Updated: 2025/12/17 15:07:24 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/14 11:41:13 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-size_t	ft_strlen(char const *str)
+size_t	ft_strlen_gnl(char const *str)
 {
 	int	i;
 
@@ -64,7 +64,7 @@ char	*ft_strdup_index(char const *src, size_t index)
 	size_t	i;
 
 	i = 0;
-	srclen = ft_strlen(src);
+	srclen = ft_strlen_gnl(src);
 	if (srclen < index)
 		return (NULL);
 	duplen = srclen - index;
@@ -81,7 +81,7 @@ char	*ft_strdup_index(char const *src, size_t index)
 	return (dup);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin_gnl(char const *s1, char const *s2)
 {
 	char	*new;
 	int		i;
@@ -91,7 +91,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (new = ft_strdup_index(s2, 0));
 	i = 0;
 	j = 0;
-	new = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	new = malloc(sizeof(char) * (ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1));
 	if (!new)
 		return (NULL);
 	while (s1[i] != '\0')

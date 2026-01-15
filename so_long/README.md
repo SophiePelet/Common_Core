@@ -1,4 +1,4 @@
-##**SO_LONG**##
+**SO_LONG**
 
 **So_long** is a project at **42 school**.
 

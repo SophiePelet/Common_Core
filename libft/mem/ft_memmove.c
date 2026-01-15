@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:20:07 by sopelet           #+#    #+#             */
-/*   Updated: 2025/11/12 17:46:04 by sopelet          ###   ########.fr       */
+/*   Updated: 2025/12/17 12:07:34 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	if (desti < source)
 	{
 		while (n--)
-		{
 			*desti++ = *source++;
-		}
 	}
 	else if (desti > source)
 	{

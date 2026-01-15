@@ -6,13 +6,20 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 14:55:32 by sopelet           #+#    #+#             */
-/*   Updated: 2025/11/19 11:26:41 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/15 17:54:57 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# include <stddef.h> //needed for size_t
+# include <stdarg.h>
+# include <stddef.h>
+# include <fcntl.h>
+# include <stdlib.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 typedef struct s_list
 {
@@ -63,7 +70,7 @@ char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 char				**ft_split(char const *s, char c);
 
-// bonus
+// lists
 t_list				*ft_lstnew(void *content);
 void				ft_lstadd_front(t_list **lst, t_list *new);
 int					ft_lstsize(t_list *lst);
@@ -75,4 +82,23 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 
+// ft_printf
+
+int					ft_putchar(const char c);
+int					ft_putstr(const char *str);
+int					ft_putnbr(int nb);
+int					ft_putnbr_unsigned(unsigned int nb);
+int					ft_putnbr_hexl(unsigned int nb);
+int					ft_putnbr_hexu(unsigned int nb);
+int					ft_format(char c, va_list args);
+int					ft_pointer(void *ptr);
+int					ft_printf(const char *format, ...);
+
+// get_next_line
+
+char				*get_next_line(int fd, int clean);
+size_t				ft_strlen_gnl(char const *str);
+char				*ft_strdup_index(char const *src, size_t index);
+char				*ft_strjoin_gnl(char const *s1, char const *s2);
+void				*ft_calloc_gnl(size_t nmemb, size_t size);
 #endif

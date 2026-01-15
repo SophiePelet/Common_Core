@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopelet <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/05 14:53:54 by sopelet           #+#    #+#             */
-/*   Updated: 2025/11/05 14:53:55 by sopelet          ###   ########.fr       */
+/*   Created: 2025/11/07 14:57:52 by sopelet           #+#    #+#             */
+/*   Updated: 2025/12/17 12:05:25 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-size_t	ft_strlen(char const *str)
+int	ft_toupper(int c)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
+	if (c >= 97 && c <= 122)
+		c = c - 32;
+	return (c);
 }
 
 /*
 #include <stdio.h>
 
-int	main(void)
+int	main(int ac, char **av)
 {
-	const char	*mystr;
-
-	mystr = "Hello World";
-	printf("%d\n", ft_strlen(mystr));
+	if (ac != 2)
+		return (0);
+	printf("%c\n", ft_toupper(av[1][0]));
 }
 */

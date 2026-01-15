@@ -1,47 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr_hexl.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/05 14:51:42 by sopelet           #+#    #+#             */
-/*   Updated: 2025/11/11 15:33:39 by sopelet          ###   ########.fr       */
+/*   Created: 2025/11/28 15:07:38 by sopelet           #+#    #+#             */
+/*   Updated: 2025/12/17 14:57:21 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <unistd.h>
 
-void	ft_putnbr_fd(int num, int fd)
+int	ft_putnbr_hexl(unsigned int nb)
 {
-	char	last_digit;
+	int	written;
 
-	if (num < 0)
+	written = 0;
+	if (nb >= 16)
 	{
-		if (num == -2147483648)
-		{
-			write(fd, "-2147483648", 11);
-			return ;
-		}
-		write(fd, "-", 1);
-		num = -num;
+		written += ft_putnbr_hexl(nb / 16);
 	}
-	if (num >= 10)
+	if (nb % 16 >= 0 && nb % 16 <= 9)
 	{
-		ft_putnbr_fd(num / 10, fd);
+		written += ft_putchar(nb % 16 + '0');
 	}
-	last_digit = num % 10 + '0';
-	ft_putchar_fd(last_digit, fd);
+	if (nb % 16 >= 10 && nb % 16 <= 15)
+	{
+		written += ft_putchar((nb % 16) - 10 + 'a');
+	}
+	return (written);
 }
 
-/*
-#include <stdlib.h>
+/* #include <stdio.h>
 
-int	main(int ac, char **av)
+int	main(void)
 {
-	if (ac != 3)
-		return (0);
-	ft_putnbr_fd(atoi(av[1]), atoi(av[2]));
-}
-*/
+	int nb;
+
+	nb = 42565154;
+	printf("%x\n", nb);
+	printf(" %d\n", ft_putnbr_hexl(nb));
+} */

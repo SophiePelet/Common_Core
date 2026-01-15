@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_unsigned.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/05 14:55:12 by sopelet           #+#    #+#             */
-/*   Updated: 2025/11/07 14:38:20 by sopelet          ###   ########.fr       */
+/*   Created: 2025/11/27 16:13:47 by sopelet           #+#    #+#             */
+/*   Updated: 2025/12/17 14:57:28 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
-int	ft_tolower(int c)
+int	ft_putnbr_unsigned(unsigned int nb)
 {
-	if (c >= 65 && c <= 90)
+	int	written;
+
+	written = 0;
+	if (nb >= 10)
 	{
-		c = c + 32;
+		written += ft_putnbr_unsigned(nb / 10);
 	}
-	return (c);
+	written += ft_putchar(nb % 10 + '0');
+	return (written);
 }
 
-/*
-#include <stdio.h>
+/* #include <stdio.h>
 
-int	main(int ac, char **av)
+int	main(void)
 {
-	if (ac != 2)
-		return (0);
-	printf("%c\n", ft_tolower(av[1][0]));
-}
-*/
+	unsigned int nbr;
+
+	nbr = -2354952;
+	printf(" %d\n", ft_putnbr_unsigned(nbr));
+	printf("%u\n", nbr);
+} */

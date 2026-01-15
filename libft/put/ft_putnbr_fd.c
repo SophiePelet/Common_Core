@@ -1,43 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/05 14:54:31 by sopelet           #+#    #+#             */
-/*   Updated: 2025/11/12 16:03:37 by sopelet          ###   ########.fr       */
+/*   Created: 2025/11/05 14:51:42 by sopelet           #+#    #+#             */
+/*   Updated: 2025/12/17 12:06:55 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
+#include <unistd.h>
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	ft_putnbr_fd(int num, int fd)
 {
-	size_t	i;
+	char	last_digit;
 
-	i = 0;
-	while (i < n && (s1[i] || s2[i]))
+	if (num < 0)
 	{
-		if (s1[i] != s2[i])
+		if (num == -2147483648)
 		{
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+			write(fd, "-2147483648", 11);
+			return ;
 		}
-		i++;
+		write(fd, "-", 1);
+		num = -num;
 	}
-	return (0);
+	if (num >= 10)
+		ft_putnbr_fd(num / 10, fd);
+	last_digit = num % 10 + '0';
+	ft_putchar_fd(last_digit, fd);
 }
 
 /*
-#include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
 int	main(int ac, char **av)
 {
 	if (ac != 3)
 		return (0);
-	printf("Expected : %d\n", strncmp(av[1], av[2], 5));
-	printf("Got : %d\n", ft_strncmp(av[1], av[2], 5));
+	ft_putnbr_fd(atoi(av[1]), atoi(av[2]));
 }
 */

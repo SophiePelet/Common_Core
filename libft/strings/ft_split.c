@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 16:42:43 by sopelet           #+#    #+#             */
-/*   Updated: 2025/11/19 11:27:40 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/15 17:51:27 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	*free_contents(const char **strs, int count)
 	return (NULL);
 }
 
-static char	**aled(char **split, const char *s, char c)
+static char	**fill_split(char **split, const char *s, char c)
 {
 	int	i;
 	int	j;
@@ -83,7 +83,7 @@ char	**ft_split(char const *s, char c)
 	new = malloc(sizeof(char *) * (cnt_words(s, c) + 1));
 	if (!new)
 		return (NULL);
-	if (aled(new, s, c) == NULL)
+	if (fill_split(new, s, c) == NULL)
 	{
 		free(new);
 		return (NULL);
@@ -91,8 +91,7 @@ char	**ft_split(char const *s, char c)
 	return (new);
 }
 
-/*
-#include <stdio.h>
+/* #include <stdio.h>
 
 int	main(void)
 {
@@ -102,8 +101,8 @@ int	main(void)
 	int i;
 
 	i = 0;
-	str = "helloz  hizzzz,   opz   ";
-	sep = 'z';
+	str = "helloz\nhizzzz\nopz   ";
+	sep = '\n';
 	split_str = ft_split(str, sep);
 	while (split_str[i] != NULL)
 	{
@@ -112,5 +111,4 @@ int	main(void)
 	}
 	free(split_str);
 	return (0);
-}
-*/
+} */

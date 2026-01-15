@@ -1,53 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/03 18:21:51 by sopelet           #+#    #+#             */
-/*   Updated: 2025/11/11 14:21:00 by sopelet          ###   ########.fr       */
+/*   Created: 2025/11/05 14:54:31 by sopelet           #+#    #+#             */
+/*   Updated: 2025/12/17 12:06:06 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-int	ft_atoi(const char *nptr)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	i;
-	int	res;
-	int	sign;
+	size_t	i;
 
 	i = 0;
-	res = 0;
-	sign = 1;
-	while (nptr[i] == 32 || (nptr[i] >= 9 && nptr[i] <= 13))
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
+	while (i < n && (s1[i] || s2[i]))
 	{
-		if (nptr[i] == '-')
-			sign = -sign;
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 		i++;
 	}
-	if (nptr[i] == '-' || nptr[i] == '+')
-		return (0);
-	while (nptr[i] != '\0' && ft_isdigit(nptr[i]))
-	{
-		res = res * 10 + (nptr[i] - '0');
-		i++;
-	}
-	return (res * sign);
+	return (0);
 }
 
 /*
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
 
 int	main(int ac, char **av)
 {
-	if (ac != 2)
+	if (ac != 3)
 		return (0);
-	printf("%d\n", atoi(av[1]));
-	printf("%d\n", ft_atoi(av[1]));
+	printf("Expected : %d\n", strncmp(av[1], av[2], 5));
+	printf("Got : %d\n", ft_strncmp(av[1], av[2], 5));
 }
 */

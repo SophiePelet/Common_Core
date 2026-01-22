@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:28:00 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/15 17:27:25 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/22 19:34:58 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ void	execute_child(t_child *child)
 }
 
 // closes all pipes
-void	close_pipes(t_child *data)
+void	close_pipes(t_child *child)
 {
 	int	i;
 
 	i = 0;
-	while (i < data->nb_commands - 1)
+	while (i < child->nb_commands - 1)
 	{
-		close(data->array_pipes[i][0]);
-		close(data->array_pipes[i][1]);
+		close(child->array_pipes[i][0]);
+		close(child->array_pipes[i][1]);
 		i++;
 	}
 }
@@ -53,6 +53,7 @@ void	wait_children(t_child *child)
 void	populate_struct(int ac, char **av, char **envp, t_child *child_struct)
 {
 	child_struct->env = envp;
+	child_struct->fd_input = get_infile(av[1]);
 	child_struct->fd_output = get_outfile(av[1], av[ac - 1]);
 	child_struct->nb_commands = ac - 3;
 	child_struct->cmd = &av[2];
@@ -69,7 +70,6 @@ void	populate_struct(int ac, char **av, char **envp, t_child *child_struct)
 		exit(1);
 	}
 	create_pipes(child_struct);
-	child_struct->fd_input = get_infile(av[1]);
 }
 
 void	populate_struct_here_doc(int ac, char **av, char **envp,

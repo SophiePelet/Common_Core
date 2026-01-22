@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:16:01 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/15 17:32:33 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/22 19:34:59 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,89 +39,75 @@ int	get_outfile(char *arg, const char *outfile)
 		{
 			ft_putstr_fd("pipex: ", 2);
 			perror(outfile);
-			exit(1);
+			return (-1);
 		}
 	}
 	fd = which_outfile(arg, outfile);
 	return (fd);
 }
 
-void	first_child(t_child *data)
+void	first_child(t_child *child)
 {
 	int	duplicate;
 
-	duplicate = dup2(data->fd_input, STDIN_FILENO);
-	if (duplicate == -1)
+	if (child->fd_input == -1)
 	{
-		ft_putstr_fd(ERR_DUPLICATION, 2);
+		if (child->fd_output > 2)
+			close(child->fd_output);
+		free(child->here_doc_pipe);
+		free(child->pid);
+		clean_array_pipes(child);
 		exit(1);
 	}
-	close(data->fd_input);
-	duplicate = dup2(data->array_pipes[data->index_command][1], STDOUT_FILENO);
+	check_duplication(child);
+	if (child->fd_input > 2)
+		close(child->fd_input);
+	duplicate = dup2(child->array_pipes[child->index_command][1], STDOUT_FILENO);
 	if (duplicate == -1)
-	{
-		ft_putstr_fd(ERR_DUPLICATION, 2);
 		exit(1);
-	}
-	close(data->array_pipes[data->index_command][1]);
-	close(data->fd_output);
-	close_pipes(data);
-	free_array_int(data->array_pipes, data->nb_commands - 1);
-	free(data->pid);
-	free(data->here_doc_pipe);
-	exe_cmd(data->cmd[data->index_command], data->env);
+	clean_exe_child(child);
 }
 
-void	middle_child(t_child *data)
+void	middle_child(t_child *child)
 {
 	int	duplicate;
 
-	duplicate = dup2(data->array_pipes[data->index_command - 1][0],
+	duplicate = dup2(child->array_pipes[child->index_command - 1][0],
 			STDIN_FILENO);
 	if (duplicate == -1)
-	{
-		ft_putstr_fd(ERR_DUPLICATION, 2);
 		exit(1);
-	}
-	close(data->array_pipes[data->index_command - 1][0]);
-	duplicate = dup2(data->array_pipes[data->index_command][1], STDOUT_FILENO);
+	close(child->array_pipes[child->index_command - 1][0]);
+	duplicate = dup2(child->array_pipes[child->index_command][1], STDOUT_FILENO);
 	if (duplicate == -1)
-	{
-		ft_putstr_fd(ERR_DUPLICATION, 2);
 		exit(1);
-	}
-	close(data->array_pipes[data->index_command][1]);
-	close(data->fd_output);
-	close_pipes(data);
-	free_array_int(data->array_pipes, data->nb_commands - 1);
-	free(data->pid);
-	free(data->here_doc_pipe);
-	exe_cmd(data->cmd[data->index_command], data->env);
+	if (child->fd_input != -1)
+		close(child->fd_input);
+	close(child->array_pipes[child->index_command][1]);
+	clean_exe_child(child);
 }
 
-void	last_child(t_child *data)
+void	last_child(t_child *child)
 {
 	int	duplicate;
 
-	duplicate = dup2(data->array_pipes[data->index_command - 1][0],
+	if (child->fd_output == -1)
+	{
+		if (child->fd_input != -1)
+			close(child->fd_input);
+		free(child->here_doc_pipe);
+		free(child->pid);
+		clean_array_pipes(child);
+		exit(1);
+	}
+	duplicate = dup2(child->array_pipes[child->index_command - 1][0],
 			STDIN_FILENO);
 	if (duplicate == -1)
-	{
-		ft_putstr_fd(ERR_DUPLICATION, 2);
 		exit(1);
-	}
-	close(data->array_pipes[data->index_command - 1][0]);
-	duplicate = dup2(data->fd_output, STDOUT_FILENO);
+	close(child->array_pipes[child->index_command - 1][0]);
+	if (child->fd_input > 2)
+		close(child->fd_input);
+	duplicate = dup2(child->fd_output, STDOUT_FILENO);
 	if (duplicate == -1)
-	{
-		ft_putstr_fd(ERR_DUPLICATION, 2);
 		exit(1);
-	}
-	close(data->fd_output);
-	close(data->fd_input);
-	close_pipes(data);
-	free_array_int(data->array_pipes, data->nb_commands - 1);
-	free(data->pid);
-	free(data->here_doc_pipe);
-	exe_cmd(data->cmd[data->index_command], data->env);
+	clean_exe_child(child);
 }

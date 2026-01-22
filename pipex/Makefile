@@ -22,6 +22,7 @@ BONUS_FILES		= bonus/helpers_bonus.c \
 				  bonus/main_bonus.c \
 				  bonus/parsing_bonus.c \
 				  bonus/utils_bonus.c \
+				  bonus/utils2_bonus.c \
 
 BONUS_OBJ		= $(BONUS_FILES:.c=.o)
 

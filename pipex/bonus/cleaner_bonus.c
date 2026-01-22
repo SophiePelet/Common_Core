@@ -6,26 +6,20 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:35:49 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/15 17:33:27 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/22 19:34:58 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/pipex_bonus.h"
 
-void	free_array_int(int **array, int size)
+void	cleanup_and_exit(char **av, int exit_code)
 {
-	int	i;
-
-	i = 0;
-	while (i < size)
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
+	if (av)
+		ft_free_array(av);
+	exit(exit_code);
 }
 
-static void	clean_array_pipes(t_child *child)
+void	clean_array_pipes(t_child *child)
 {
 	int	i;
 
@@ -96,21 +90,17 @@ void	cleanup_resources(t_child *child)
 	}
 }
 
-int	which_outfile(char *arg, const char *outfile)
+void	clean_exe_child(t_child *child)
 {
-	int	fd;
-
-	if (ft_strncmp(arg, "here_doc", 9) == 0 && arg[8] == '\0')
-		fd = open(outfile, O_CREAT | O_APPEND | O_RDWR, 0644);
-	else
-		fd = open(outfile, O_CREAT | O_TRUNC | O_RDWR, 0644);
-	if (fd == -1)
-	{
-		ft_putstr_fd("pipex: ", 2);
-		perror(outfile);
-		exit(1);
-	}
-	return (fd);
+	if (child->index_command < child->nb_commands - 1)
+		close(child->array_pipes[child->index_command][1]);
+	if (child->fd_output > 2)
+		close(child->fd_output);
+	close_pipes(child);
+	free_array_int(child->array_pipes, child->nb_commands - 1);
+	free(child->pid);
+	free(child->here_doc_pipe);
+	exe_cmd(child->cmd[child->index_command], child->env);
 }
 
 /* void	populate_struct(int ac, char **av, char **envp, t_child *child_struct)

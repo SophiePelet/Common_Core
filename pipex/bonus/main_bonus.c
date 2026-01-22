@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:16:12 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/15 17:34:10 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/22 15:59:39 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,7 @@ int	main(int ac, char **av, char **envp)
 			populate_struct_here_doc(ac, av, envp, &child);
 		else
 			populate_struct(ac, av, envp, &child);
-		if (child.fd_input == -1 || child.fd_output == -1)
-		{
-			cleanup_on_error(&child);
-			return (1);
-		}
 		pipex_bonus(&child);
 		cleanup_resources(&child);
 	}
-	return (0);
 }

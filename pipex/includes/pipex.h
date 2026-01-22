@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 16:42:45 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/15 17:13:15 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/22 14:45:40 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 # include <sys/wait.h>  //for waitpid() and wait()
 # include <unistd.h>
 
-# define ERR_CMD_NOT_FOUND "Command not found\n"
+# define ERR_CMD_NOT_FOUND "command not found\n"
+# define ERR_PATH_NOT_FOUND	"No such file or directory\n"
 # define ERR_EXECUTION "Couldn't execute\n"
 # define ERR_DUPLICATION "Error while duplicating\n"
 # define ERR_MEM_ALLOCATION "Error while allocating memory\n"

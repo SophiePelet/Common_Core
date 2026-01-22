@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 19:37:52 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/22 19:34:57 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/22 19:54:25 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include <unistd.h>
 # include <string.h>
 
-# define ERR_CMD_NOT_FOUND "command not found\n"
-# define ERR_PATH_NOT_FOUND "No such file or directory\n"
+# define ERR_CMD_NOT_FOUND "command not found"
+# define ERR_PATH_NOT_FOUND "No such file or directory"
 # define ERR_EXECUTION "Couldn't execute\n"
 # define ERR_MEM_ALLOCATION "Error while allocating memory\n"
 # define READ_END 0

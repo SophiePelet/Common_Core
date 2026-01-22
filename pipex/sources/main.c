@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 18:34:51 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/20 19:24:53 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/22 19:54:46 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,15 @@ void	pipex(t_pipex *data)
 	pid_t	second_child;
 
 	if (pipe(pipe_end) == -1)
-		return (perror("Pipe"));
+		return (perror("pipex: pipe"));
 	first_child = fork();
 	if (first_child == -1)
-		return (perror("Fork 1"));
+		return (perror("pipex: fork"));
 	if (first_child == 0)
 		handle_child1(data, pipe_end);
 	second_child = fork();
 	if (second_child == -1)
-		return (perror("Fork 2"));
+		return (perror("pipex: fork"));
 	if (second_child == 0)
 		handle_child2(data, pipe_end);
 	close(pipe_end[0]);

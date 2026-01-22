@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:14:06 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/22 19:19:47 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/22 19:56:25 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ void	error_msg(char *prefix, char *msg, char *error_msg)
 
 	i = 0;
 	j = 0;
-	while (prefix[j] != '\0' && i < 511)
+	while (prefix[j] != '\0' && i < 510)
 		buffer[i++] = prefix[j++];
 	j = 0;
-	while (msg[j] != '\0' && i < 511)
+	while (msg[j] != '\0' && i < 510)
 		buffer[i++] = msg[j++];
 	buffer[i++] = ':';
 	buffer[i++] = ' ';
 	j = 0;
-	while (error_msg[j] != '\0' && i < 511)
+	while (error_msg[j] != '\0' && i < 510)
 		buffer[i++] = error_msg[j++];
-	buffer[i++] = '\0';
+	buffer[i++] = '\n';
 	write(2, buffer, i);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:16:12 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/22 15:59:39 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/22 19:52:16 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	create_pipes(t_child *child)
 		if (pipe(array[i]) == -1)
 		{
 			free_array_int(array, i);
-			perror("Pipe");
+			error_msg("pipex: ", "pipe", strerror(errno));
 			exit(1);
 		}
 		i++;
@@ -52,7 +52,7 @@ static void	pipex_bonus(t_child *child)
 		child->pid[i] = fork();
 		if (child->pid[i] == -1)
 		{
-			perror("Fork");
+			error_msg("pipex: ", "fork", strerror(errno));
 			exit(1);
 		}
 		if (child->pid[i] == 0)
@@ -68,7 +68,7 @@ static void	here_doc_pipe(t_child *child)
 {
 	if (pipe(child->here_doc_pipe) == -1)
 	{
-		perror("Pipe");
+		error_msg("pipex: ", "pipe", strerror(errno));
 		exit(1);
 	}
 }

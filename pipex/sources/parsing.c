@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 16:02:43 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/22 14:45:02 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/26 18:45:29 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*absolute_path(const char *cmd)
 {
-	if (cmd[0] == '/')
+	if (ft_strchr(cmd, '/'))
 	{
 		if (access(cmd, X_OK) == 0)
 			return ((char *)cmd);
@@ -68,7 +68,7 @@ char	*get_cmd_path(char *cmd, char **env, char **av)
 		ft_putstr_fd("pipex: ", 2);
 		ft_putstr_fd(cmd, 2);
 		ft_putstr_fd(": ", 2);
-		if (cmd[0] == '/')
+		if (ft_strchr(cmd, '/'))
 			ft_putstr_fd(ERR_PATH_NOT_FOUND, 2);
 		else
 			ft_putstr_fd(ERR_CMD_NOT_FOUND, 2);

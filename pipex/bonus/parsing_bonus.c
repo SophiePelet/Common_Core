@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:14:06 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/22 19:56:25 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/26 19:03:42 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	error_msg(char *prefix, char *msg, char *error_msg)
 
 static char	*absolute_path(const char *cmd)
 {
-	if (cmd[0] == '/')
+	if (ft_strchr(cmd, '/'))
 	{
 		if (access(cmd, X_OK) == 0)
 			return ((char *)cmd);
@@ -87,7 +87,7 @@ char	*get_cmd_path(char *cmd, char **env, char **av)
 	cmd_path = test_path(cmd, env[i] + 5);
 	if (!cmd_path)
 	{
-		if (cmd[0] == '/')
+		if (ft_strchr(cmd, '/'))
 			error_msg("pipex: ", cmd, ERR_PATH_NOT_FOUND);
 		else
 			error_msg("pipex: ", cmd, ERR_CMD_NOT_FOUND);
@@ -110,30 +110,3 @@ void	exe_cmd(char *cmd, char **env)
 	perror(av[0]);
 	cleanup_and_exit(av, 127);
 }
-
-/* char	*get_cmd_path(char *cmd, char **env, char **av)
-{
-	int		i;
-	char	*cmd_path;
-
-	i = 0;
-	while (env[i])
-	{
-		if (ft_strncmp(env[i], "PATH=", 5) == 0)
-			break ;
-		i++;
-	}
-	cmd_path = test_path(cmd, env[i] + 5);
-	if (!cmd_path)
-	{
-		ft_putstr_fd("pipex: ", 2);
-		ft_putstr_fd(cmd, 2);
-		ft_putstr_fd(": ", 2);
-		if (cmd[0] == '/')
-			ft_putstr_fd(ERR_PATH_NOT_FOUND, 2);
-		else
-			ft_putstr_fd(ERR_CMD_NOT_FOUND, 2);
-		cleanup_and_exit(av, 127);
-	}
-	return (cmd_path);
-} */

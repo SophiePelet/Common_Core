@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 12:45:42 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/27 20:09:53 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/28 18:48:15 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,46 @@
 
 int	main(int ac, char **av)
 {
-	int		i;
 	t_node	*head_a;
 	t_node	*head_b;
 	t_node	*current;
-	int		size;
+	
 
-	i = 0;
+	if (ac == 1)
+		return (0);
+	if (ac >= 2)
+	{
+		if (!check_num(ac, av))
+			return (ft_putstr_fd("Error\nNot a valid argument\n", 2), 0);
+		head_a = get_num(ac, av);
+		is_sorted(&head_a);
+		head_b = NULL;
+		push_chunks_to_b(&head_a, &head_b);
+		get_expected_index(&head_b);
+		get_actual_index(&head_b);
+		sorting(&head_a, &head_b);
+		get_actual_index(&head_a);
+		rotate_to_min(&head_a);
+		current = head_a;
+		while (current)
+		{
+			printf("lst data: %d\n", current->data);
+			current = current->next;
+		}
+		clean_list(&head_a);
+		clean_list(&head_b);
+	}
+	return (0);
+}
+
+/* int	main(int ac, char **av)
+{
+	t_node	*head_a;
+	t_node	*head_b;
+	t_node	*current;
+	//int		size;
+	
+
 	if (ac == 1)
 		return (0);
 	if (ac >= 2)
@@ -29,7 +62,7 @@ int	main(int ac, char **av)
 			return (ft_putstr_fd("Error\nNot a valid argument\n", 2), 0);
 		head_a = get_num(ac, av);
 		head_b = NULL;
-		size = size_list(&head_a);
+		//size = size_list(&head_a);
 		get_expected_index(&head_a);
 		get_actual_index(&head_a);
 		push_chunks_to_b(&head_a, &head_b);
@@ -37,15 +70,15 @@ int	main(int ac, char **av)
 		while (current)
 		{
 			printf("lst data: %d\n", current->data);
-			//printf("lst index: %d\n", current->expected_index);
-			//printf("lst actual index: %d\n", current->index);
+			printf("lst index: %d\n", current->expected_index);
+			printf("lst actual index: %d\n", current->index);
 			current = current->next;
 		}
 		clean_list(&head_a);
 		clean_list(&head_b);
 	}
 	return (0);
-}
+} */
 
 /* int	main(int ac, char **av)
 {

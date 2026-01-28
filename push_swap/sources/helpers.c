@@ -3,57 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 12:47:04 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/27 14:44:34 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/01/28 18:18:26 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
 
-int	is_digit(char c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
-}
-
-int	is_numeric(char *str)
-{
-	int	i;
-
-	if (!str)
-		return (0);
-	i = 1;
-	if (str[0] == '-' || str[0] == '+')
-	{
-		while (str[i] != '\0')
-		{
-			if (!is_digit(str[i]))
-				return (0);
-			i++;
-		}
-		return (1);
-	}
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (!is_digit(str[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-t_node	*last_node(t_node **node)
+int	is_sorted(t_node **stack)
 {
 	t_node	*current;
+	int		size;
 
-	current = *node;
-	while (current != NULL && current->next != NULL)
+	if (!stack || !*stack)
+		return (1);
+	current = *stack;
+	size = size_list(stack);
+	if (size == 0 || size == 1)
+		return (1);
+	while (current && current->next)
+	{
+		if (current->data > current->next->data)
+			return (0);
 		current = current->next;
-	return (current);
+	}
+	return (1);
 }
 
 static long long	exec_atol(char *nptr, int sign, int pos)
@@ -103,4 +79,89 @@ long long	ft_atol(char *n)
 		return (0);
 	result = exec_atol(n, sign, i);
 	return (result * sign);
+}
+
+void	get_expected_index(t_node **stack)
+{
+	t_node	*current;
+	t_node	*compare;
+	int		expected_index;
+
+	if (!stack || !*stack)
+		return ;
+	current = *stack;
+	while (current)
+	{
+		expected_index = 0;
+		compare = *stack;
+		while (compare)
+		{
+			if (compare->data < current->data)
+				expected_index++;
+			compare = compare->next;
+		}
+		current->expected_index = expected_index;
+		current = current->next;
+	}
+}
+
+void push_chunks_to_b(t_node **stack_a, t_node **stack_b)
+{
+	int count;
+	int size_chunk;
+
+	if (!stack_a || !*stack_a)
+		return;
+	count = 0;
+	size_chunk = get_chunks(stack_a);
+	while (*stack_a)
+	{
+		if ((*stack_a)->expected_index <= count)
+		{
+			push_b(stack_a, stack_b, 1);
+			rotate_stack(stack_b, 'b', 1);
+			count++;
+		}
+		else if ((*stack_a)->expected_index <= count + size_chunk)
+		{
+			push_b(stack_a, stack_b, 1);
+			count++;
+		}
+		else
+			rotate_stack(stack_a, 'a', 1);
+	}
+}
+
+void	rotate_to_min(t_node **stack_a)
+{
+	t_node	*min_node;
+	int		position;
+	int		size;
+	int		rotations;
+
+	if (!stack_a || !*stack_a)
+		return ;
+	min_node = get_min_node(stack_a);
+	if (!min_node)
+		return ;
+	position = min_node->index;
+	size = size_list(stack_a);
+	if (position <= size / 2)
+	{
+		rotations = position;
+		while (rotations > 0)
+		{
+			rotate_stack(stack_a, 'a', 1);
+			rotations--;
+		}
+	}
+	else
+	{
+		rotations = size - position;
+		while (rotations > 0)
+		{
+			reverse_rotate_stack(stack_a, 'a', 1);
+			rotations--;
+		}
+	}
 }

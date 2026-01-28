@@ -3,108 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/26 14:52:38 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/27 19:36:13 by sopelet          ###   ########.fr       */
+/*   Created: 2026/01/27 16:02:44 by sopelet           #+#    #+#             */
+/*   Updated: 2026/01/28 16:38:22 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
 
-void	get_expected_index(t_node **stack)
+int	is_digit(char c)
 {
-	t_node	*current;
-	t_node	*compare;
-	int		expected_index;
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
 
-	if (!stack || !*stack)
-		return ;
-	current = *stack;
-	while (current)
+int	is_numeric(char *str)
+{
+	int	i;
+
+	if (!str)
+		return (0);
+	i = 1;
+	if (str[0] == '-' || str[0] == '+')
 	{
-		expected_index = 0;
-		compare = *stack;
-		while (compare)
+		while (str[i] != '\0')
 		{
-			if (compare->data < current->data)
-				expected_index++;
-			compare = compare->next;
+			if (!is_digit(str[i]))
+				return (0);
+			i++;
 		}
-		current->expected_index = expected_index;
-		current = current->next;
+		return (1);
 	}
-}
-
-void	get_actual_index(t_node **stack)
-{
-	t_node	*current;
-	int		i;
-
-	if (!stack || !*stack)
-		return ;
 	i = 0;
-	current = *stack;
-	while (current)
+	while (str[i] != '\0')
 	{
-		current->index = i;
-		current = current->next;
+		if (!is_digit(str[i]))
+			return (0);
 		i++;
 	}
+	return (1);
 }
 
-int	get_min(t_node **stack)
+t_node	*last_node(t_node **node)
 {
-	int		min;
 	t_node	*current;
-	int		i;
 
-	if (!stack || !*stack)
-		return (-1);
-	min = (*stack)->expected_index;
-	current = *stack;
-	i = 0;
-	while (current)
-	{
-		if (current->expected_index < min)
-			min = current->expected_index;
+	current = *node;
+	while (current != NULL && current->next != NULL)
 		current = current->next;
-	}
-	current = *stack;
-	while (current->expected_index != min)
-	{
-		i++;
-		current = current->next;
-	}
-	return (i);
+	return (current);
 }
 
-/* int	get_median(t_node **stack)
+int	abs_value(int nb)
 {
-	t_node	*current;
-	int		size;
-
-	current = *stack;
-	size = 0;
-	while (current)
-	{
-		size++;
-		current = current->next;
-	}
-	return (size / 2);
-} */
-
-int	get_chunks(t_node **stack_a)
-{
-	int	size;
-	int	chunk_size;
-
-	size = size_list(stack_a);
-	if (size <= 100)
-		chunk_size = 15;
-	else if (size <= 500)
-		chunk_size = 35;
-	else
-		chunk_size = 45;
-	return (chunk_size);
+	if (nb < 0)
+		return (-nb);
+	return (nb);
 }

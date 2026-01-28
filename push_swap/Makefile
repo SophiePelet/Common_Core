@@ -17,7 +17,7 @@ SRC_FILES		= sources/main.c \
 				  sources/lists.c \
 				  sources/helpers.c \
 				  sources/utils.c \
-				  sources/utils2.c \
+				  sources/helpers2.c \
 				  sources/operations/both_stacks.c \
 				  sources/operations/push.c \
 				  sources/operations/rotate.c \

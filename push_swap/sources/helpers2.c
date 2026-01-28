@@ -6,7 +6,7 @@
 /*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:52:38 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/28 18:18:30 by sophie           ###   ########.fr       */
+/*   Updated: 2026/01/28 23:12:34 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,14 @@ int	get_min(t_node **stack)
 int	get_chunks(t_node **stack_a)
 {
 	int	size;
-	int	chunk_size;
 
 	size = size_list(stack_a);
 	if (size <= 100)
-		chunk_size = 28;
+		return (size / 3.3);
 	else if (size <= 500)
-		chunk_size = 52;
+		return (size / 11);
 	else
-		chunk_size = 105;
-	return (chunk_size);
+		return (size / 15);
 }
 
 t_node	*get_min_node(t_node **stack)

@@ -6,7 +6,7 @@
 /*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 14:58:01 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/28 18:02:06 by sophie           ###   ########.fr       */
+/*   Updated: 2026/01/28 23:10:00 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,12 @@ void	sorting(t_node **stack_a, t_node **stack_b)
 	int		op_a;
 
 	if (*stack_a == NULL && *stack_b != NULL)
-    {
-        push_a(stack_a, stack_b, 1);
-        get_actual_index(stack_a);
-        get_actual_index(stack_b);
-    }
+	{
+		push_a(stack_a, stack_b, 1);
+		get_actual_index(stack_a);
+		if (*stack_b)
+			get_actual_index(stack_b);
+	}
 	while (*stack_b)
 	{
 		best_b = calculate_cost(stack_a, stack_b);
@@ -132,27 +133,28 @@ void	sorting(t_node **stack_a, t_node **stack_b)
 			}
 		}
 		while (op_a > 0)
-        {
-            rotate_stack(stack_a, 'a', 1);
-            op_a--;
-        }
-        while (op_a < 0)
-        {
-            reverse_rotate_stack(stack_a, 'a', 1);
-            op_a++;
-        }
-        while (op_b > 0)
-        {
-            rotate_stack(stack_b, 'b', 1);
-            op_b--;
-        }
-        while (op_b < 0)
-        {
-            reverse_rotate_stack(stack_b, 'b', 1);
-            op_b++;
-        }
-        push_a(stack_a, stack_b, 1);
-        get_actual_index(stack_a);
-        get_actual_index(stack_b);
+		{
+			rotate_stack(stack_a, 'a', 1);
+			op_a--;
+		}
+		while (op_a < 0)
+		{
+			reverse_rotate_stack(stack_a, 'a', 1);
+			op_a++;
+		}
+		while (op_b > 0)
+		{
+			rotate_stack(stack_b, 'b', 1);
+			op_b--;
+		}
+		while (op_b < 0)
+		{
+		reverse_rotate_stack(stack_b, 'b', 1);
+		op_b++;
+	}
+	push_a(stack_a, stack_b, 1);
+	get_actual_index(stack_a);
+	if (*stack_b)
+		get_actual_index(stack_b);
 	}
 }

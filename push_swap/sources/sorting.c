@@ -6,7 +6,7 @@
 /*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 14:58:01 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/28 23:10:00 by sophie           ###   ########.fr       */
+/*   Updated: 2026/01/29 21:13:40 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ static int nb_move_good_pos(t_node *current_b, t_node **stack_a, t_node **stack_
 {
 	t_node *sec_small;
 	t_node	*target;
-	int top_a;
-	int top_b;
-	int to_top;
+	int move_a;
+	int move_b;
+	int total_moves;
 
 	sec_small = second_smallest(stack_a, current_b);
 	if (sec_small == NULL)
@@ -58,13 +58,21 @@ static int nb_move_good_pos(t_node *current_b, t_node **stack_a, t_node **stack_
 		target = get_min_node(stack_a);
         if (target == NULL)
             return (INT_MAX);
-		top_a = abs_value(nb_get_to_top(get_min_node(stack_a), stack_a));
+		move_a = nb_get_to_top(get_min_node(stack_a), stack_a);
 	}
 	else
-		top_a = abs_value(nb_get_to_top(sec_small, stack_a));
-	top_b = abs_value(nb_get_to_top(current_b, stack_b));
-	to_top = top_a + top_b;
-	return (to_top);
+		move_a = nb_get_to_top(sec_small, stack_a);
+	move_b = nb_get_to_top(current_b, stack_b);
+	if ((move_a > 0 && move_b > 0) || (move_a < 0 && move_b < 0))
+	{
+		if (abs_value(move_a) > abs_value(move_b))
+			total_moves = abs_value(move_a);
+		else
+			total_moves = abs_value(move_b);
+	}
+	else
+		total_moves = abs_value(move_a) + abs_value(move_b);
+	return (total_moves);
 }
 
 static t_node *calculate_cost(t_node **stack_a, t_node **stack_b)
@@ -108,7 +116,7 @@ void	sorting(t_node **stack_a, t_node **stack_b)
 	{
 		best_b = calculate_cost(stack_a, stack_b);
 		if (best_b == NULL)
-		break;
+			break;
 		op_b = nb_get_to_top(best_b, stack_b);
 		target_a = second_smallest(stack_a, best_b);
 		if (target_a == NULL)

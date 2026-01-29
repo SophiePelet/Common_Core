@@ -6,7 +6,7 @@
 /*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:52:38 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/28 23:12:34 by sophie           ###   ########.fr       */
+/*   Updated: 2026/01/29 21:49:24 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	get_min(t_node **stack)
 	t_node	*current;
 	int		i;
 
-	//if (!stack || !*stack)
-		//return (-1);
+	if (!stack || !*stack)
+		return (-1);
 	min = (*stack)->expected_index;
 	current = *stack;
 	i = 0;
@@ -60,10 +60,14 @@ int	get_chunks(t_node **stack_a)
 	int	size;
 
 	size = size_list(stack_a);
-	if (size <= 100)
-		return (size / 3.3);
+	if (size <= 5)
+		return (3);
+	else if (size <= 16)
+		return (4);
+	else if (size <= 100)
+		return (27);
 	else if (size <= 500)
-		return (size / 11);
+		return (30);
 	else
 		return (size / 15);
 }
@@ -84,17 +88,4 @@ t_node	*get_min_node(t_node **stack)
 		current = current->next;
 	}
 	return (min_node);
-}
-
-int rotate_to_top(t_node *node, t_node **stack)
-{
-	int position;
-	int size;
-
-	position = node->index;
-	size = size_list(stack);
-	if (position <= size / 2)
-		return (position);
-	else
-		return (-(size - position));
 }

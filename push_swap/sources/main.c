@@ -6,7 +6,7 @@
 /*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 12:45:42 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/28 22:44:13 by sophie           ###   ########.fr       */
+/*   Updated: 2026/01/29 21:30:13 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	main(int ac, char **av)
 {
 	t_node	*head_a;
 	t_node	*head_b;
-	t_node	*current;
 	int		size;
 
 	if (ac == 1)
@@ -39,18 +38,27 @@ int	main(int ac, char **av)
 		else
 		{
 			get_expected_index(&head_a);
-			push_chunks_to_b(&head_a, &head_b);
-			get_expected_index(&head_b);
-			get_actual_index(&head_b);
-			sorting(&head_a, &head_b);
+			if (size <= 10)
+			{
+				while (size_list(&head_a) > 3)
+				{
+					get_actual_index(&head_a);
+					rotate_to_min(&head_a);
+					push_b(&head_a, &head_b, 1);
+				}
+			}
+			else
+				push_chunks_to_b(&head_a, &head_b);
+			if (size_list(&head_a) == 3)
+				sort_3_nb(&head_a);
+			if (head_b != NULL)
+			{
+				get_expected_index(&head_b);
+				get_actual_index(&head_b);
+				sorting(&head_a, &head_b);
+			}
 			get_actual_index(&head_a);
 			rotate_to_min(&head_a);
-		}
-		current = head_a;
-		while (current)
-		{
-			printf("lst data: %d\n", current->data);
-			current = current->next;
 		}
 		clean_list(&head_a);
 		clean_list(&head_b);

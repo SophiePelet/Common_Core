@@ -6,7 +6,7 @@
 /*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 12:47:04 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/28 18:18:26 by sophie           ###   ########.fr       */
+/*   Updated: 2026/01/29 21:45:16 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,13 +109,13 @@ void push_chunks_to_b(t_node **stack_a, t_node **stack_b)
 {
 	int count;
 	int size_chunk;
+	int mid_point;
 
-	if (!stack_a || !*stack_a)
-		return;
 	count = 0;
 	size_chunk = get_chunks(stack_a);
 	while (*stack_a)
 	{
+		mid_point = count + (size_chunk / 2);
 		if ((*stack_a)->expected_index <= count)
 		{
 			push_b(stack_a, stack_b, 1);
@@ -125,6 +125,8 @@ void push_chunks_to_b(t_node **stack_a, t_node **stack_b)
 		else if ((*stack_a)->expected_index <= count + size_chunk)
 		{
 			push_b(stack_a, stack_b, 1);
+			if (*stack_b && (*stack_b)->expected_index <= mid_point)
+				rotate_stack(stack_b, 'b', 1);
 			count++;
 		}
 		else

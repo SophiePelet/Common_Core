@@ -6,7 +6,7 @@
 /*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 11:45:27 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/30 17:04:00 by sophie           ###   ########.fr       */
+/*   Updated: 2026/01/30 21:10:19 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int 		is_numeric(char *str);
 // Utils
 void		get_expected_index(t_node **stack);
 int			get_min(t_node **stack);
-int			is_sorted(t_node **stack, int print);
+int			is_sorted(t_node **stack);
 void		get_actual_index(t_node **stack);
 int			get_chunks(t_node **stack_a);
 t_node		*get_min_node(t_node **stack);

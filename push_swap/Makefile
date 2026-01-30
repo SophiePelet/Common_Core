@@ -28,6 +28,18 @@ SRC_FILES		= sources/main.c \
 				  sources/sorting.c \
 
 BONUS_SRC_FILES	= bonus/checker_bonus.c \
+				  sources/parsing.c \
+				  sources/lists.c \
+				  sources/utils.c \
+				  sources/helpers.c \
+				  sources/helpers2.c \
+				  sources/operations/both_stacks.c \
+				  sources/operations/push.c \
+				  sources/operations/rotate.c \
+				  sources/operations/swap.c \
+				  sources/calculate_cost.c \
+				  sources/sorting_small.c \
+				  sources/sorting.c \
 
 OBJ_FILES		= ${SRC_FILES:.c=.o}
 
@@ -39,24 +51,25 @@ BONUS_OBJ_FILES	= ${BONUS_SRC_FILES:.c=.o}
 all: ${NAME}
 
 ${NAME}: ${OBJ_FILES} ${LIBFT}
-			${CC} -o $@ ${OBJ_FILES} ${LIBFT}
+	${CC} -o $@ ${OBJ_FILES} ${LIBFT}
+
+${NAME_BONUS}: ${BONUS_OBJ_FILES} ${LIBFT}
+	${CC} -o $@ ${BONUS_OBJ_FILES} ${LIBFT}
 
 bonus: .bonus_built
 
-.bonus_built: ${BONUS_OBJ_FILES} ${LIBFT}
-		@mkdir -p ${OBJ_DIRS}
-		${CC} ${CFLAGS} -o ${NAME} ${BONUS_OBJ_FILES} ${LIBFT}
-		@touch .bonus_built
+.bonus_built: ${NAME_BONUS}
+	@touch .bonus_built
 
 ${LIBFT}:
-		@$(MAKE) -C ${LIBFT_DIR}
+	@$(MAKE) -C ${LIBFT_DIR}
 
-%o: %.c
-	${CC} ${CFLAGS} -c $< -o $@
+%.o: %.c
 	@mkdir -p ${OBJ_DIRS}
+	${CC} ${CFLAGS} -c $< -o $@
 
 clean:
-	rm -f ${OBJ_FILES} ${BONUS_OBJ_FILES}
+	rm -f ${OBJ_FILES} ${BONUS_OBJ_FILES} .bonus_built
 	@make clean -C ${LIBFT_DIR}
 
 fclean: clean

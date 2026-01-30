@@ -6,7 +6,7 @@
 /*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 12:45:42 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/30 19:59:46 by sophie           ###   ########.fr       */
+/*   Updated: 2026/01/30 21:10:18 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	main(int ac, char **av)
 		if (!check_num(ac, av))
 			return (ft_putstr_fd("Error\nNot a valid argument\n", 2), 0);
 		head_a = get_num(ac, av);
-		if (is_sorted(&head_a, 0))
+		if (is_sorted(&head_a))
 			return (clean_list(&head_a), 0);
 		head_b = NULL;
 		size = size_list(&head_a);

@@ -15,13 +15,14 @@ INCLUDE_DIR		= .
 SRC_FILES		= sources/main.c \
 				  sources/parsing.c \
 				  sources/lists.c \
-				  sources/helpers.c \
 				  sources/utils.c \
+				  sources/helpers.c \
 				  sources/helpers2.c \
 				  sources/operations/both_stacks.c \
 				  sources/operations/push.c \
 				  sources/operations/rotate.c \
 				  sources/operations/swap.c \
+				  sources/calculate_cost.c \
 				  sources/sorting_small.c \
 				  sources/sorting.c \
 

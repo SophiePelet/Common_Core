@@ -6,96 +6,68 @@
 /*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 14:58:01 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/29 21:13:40 by sophie           ###   ########.fr       */
+/*   Updated: 2026/01/30 15:42:48 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
 
-static t_node *second_smallest(t_node **stack_a, t_node *current_b)
+void	handle_empty_a(t_node **stack_a, t_node **stack_b)
 {
-	t_node *current;
-	t_node *small;
+	push_a(stack_a, stack_b, 1);
+	get_actual_index(stack_a);
+	if (*stack_b)
+		get_actual_index(stack_b);
+}
 
-	current = *stack_a;
-	small = NULL;
-	while (current)
+void	opti_rota_both(t_node **stack_a, t_node **stack_b, int *op_a, int *op_b)
+{
+	if (*op_b > 0 && *op_a > 0)
 	{
-		if (current->expected_index > current_b->expected_index)
+		while (*op_a > 0 && *op_b > 0)
 		{
-			if (small == NULL || current->expected_index < small->expected_index)
-				small = current;
+			rotate_both(stack_a, stack_b, 1);
+			(*op_a)--;
+			(*op_b)--;
 		}
-		current = current->next;
 	}
-	return (small);
-}
-
-static int nb_get_to_top(t_node *node, t_node **stack)
-{
-	int position;
-	int size;
-
-	position = node->index;
-	size = size_list(stack);
-	if (position <= size / 2)
-		return (position);
-	else
-		return (-(size - position));
-}
-
-static int nb_move_good_pos(t_node *current_b, t_node **stack_a, t_node **stack_b)
-{
-	t_node *sec_small;
-	t_node	*target;
-	int move_a;
-	int move_b;
-	int total_moves;
-
-	sec_small = second_smallest(stack_a, current_b);
-	if (sec_small == NULL)
+	if (*op_a < 0 && *op_b < 0)
 	{
-		target = get_min_node(stack_a);
-        if (target == NULL)
-            return (INT_MAX);
-		move_a = nb_get_to_top(get_min_node(stack_a), stack_a);
-	}
-	else
-		move_a = nb_get_to_top(sec_small, stack_a);
-	move_b = nb_get_to_top(current_b, stack_b);
-	if ((move_a > 0 && move_b > 0) || (move_a < 0 && move_b < 0))
-	{
-		if (abs_value(move_a) > abs_value(move_b))
-			total_moves = abs_value(move_a);
-		else
-			total_moves = abs_value(move_b);
-	}
-	else
-		total_moves = abs_value(move_a) + abs_value(move_b);
-	return (total_moves);
-}
-
-static t_node *calculate_cost(t_node **stack_a, t_node **stack_b)
-{
-	int to_top;
-	t_node *current_b;
-	int greed;
-	t_node *greed_node;
-
-	current_b = (*stack_b);
-	greed = INT_MAX;
-	greed_node = NULL;
-	while (current_b)
-	{
-		to_top = nb_move_good_pos(current_b, stack_a, stack_b);
-		if (to_top < greed)
+		while (*op_a < 0 && *op_b < 0)
 		{
-			greed = to_top;
-			greed_node = current_b;
+			reverse_rotate_both(stack_a, stack_b, 1);
+			(*op_a)++;
+			(*op_b)++;
 		}
-		current_b = current_b->next;
 	}
-	return (greed_node);
+}
+
+void	opti_rota_a(t_node **stack_a, int *op_a)
+{
+	while (*op_a > 0)
+	{
+		rotate_stack(stack_a, 'a', 1);
+		(*op_a)--;
+	}
+	while (*op_a < 0)
+	{
+		reverse_rotate_stack(stack_a, 'a', 1);
+		(*op_a)++;
+	}
+}
+
+void	opti_rota_b(t_node **stack_b, int *op_b)
+{
+	while (*op_b > 0)
+	{
+		rotate_stack(stack_b, 'b', 1);
+		(*op_b)--;
+	}
+	while (*op_b < 0)
+	{
+		reverse_rotate_stack(stack_b, 'b', 1);
+		(*op_b)++;
+	}
 }
 
 void	sorting(t_node **stack_a, t_node **stack_b)
@@ -106,12 +78,7 @@ void	sorting(t_node **stack_a, t_node **stack_b)
 	int		op_a;
 
 	if (*stack_a == NULL && *stack_b != NULL)
-	{
-		push_a(stack_a, stack_b, 1);
-		get_actual_index(stack_a);
-		if (*stack_b)
-			get_actual_index(stack_b);
-	}
+		handle_empty_a(stack_a, stack_b);
 	while (*stack_b)
 	{
 		best_b = calculate_cost(stack_a, stack_b);
@@ -122,47 +89,12 @@ void	sorting(t_node **stack_a, t_node **stack_b)
 		if (target_a == NULL)
 			target_a = get_min_node(stack_a);
 		op_a = nb_get_to_top(target_a, stack_a);
-		if (op_b > 0 && op_a > 0)
-		{
-			while (op_a > 0 && op_b > 0)
-			{
-				rotate_both(stack_a, stack_b, 1);
-				op_a--;
-				op_b--;
-			}
-		}
-		if (op_a < 0 && op_b < 0)
-		{
-			while (op_a < 0 && op_b < 0)
-			{
-				reverse_rotate_both(stack_a, stack_b, 1);
-				op_a++;
-				op_b++;
-			}
-		}
-		while (op_a > 0)
-		{
-			rotate_stack(stack_a, 'a', 1);
-			op_a--;
-		}
-		while (op_a < 0)
-		{
-			reverse_rotate_stack(stack_a, 'a', 1);
-			op_a++;
-		}
-		while (op_b > 0)
-		{
-			rotate_stack(stack_b, 'b', 1);
-			op_b--;
-		}
-		while (op_b < 0)
-		{
-		reverse_rotate_stack(stack_b, 'b', 1);
-		op_b++;
-	}
-	push_a(stack_a, stack_b, 1);
-	get_actual_index(stack_a);
-	if (*stack_b)
-		get_actual_index(stack_b);
+		opti_rota_both(stack_a, stack_b, &op_a, &op_b);
+		opti_rota_a(stack_a, &op_a);
+		opti_rota_b(stack_b, &op_b);
+		push_a(stack_a, stack_b, 1);
+		get_actual_index(stack_a);
+		if (*stack_b)
+			get_actual_index(stack_b);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 12:47:04 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/29 21:45:16 by sophie           ###   ########.fr       */
+/*   Updated: 2026/01/30 14:36:51 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,24 @@ void push_chunks_to_b(t_node **stack_a, t_node **stack_b)
 	}
 }
 
+void	rotate_to_min_upper(t_node **stack_a, int rotations)
+{
+	while (rotations > 0)
+	{
+		rotate_stack(stack_a, 'a', 1);
+		rotations--;
+	}
+}
+
+void	rotate_to_min_lower(t_node **stack_a, int rotations)
+{
+	while (rotations > 0)
+	{
+		reverse_rotate_stack(stack_a, 'a', 1);
+		rotations--;
+	}
+}
+
 void	rotate_to_min(t_node **stack_a)
 {
 	t_node	*min_node;
@@ -151,19 +169,11 @@ void	rotate_to_min(t_node **stack_a)
 	if (position <= size / 2)
 	{
 		rotations = position;
-		while (rotations > 0)
-		{
-			rotate_stack(stack_a, 'a', 1);
-			rotations--;
-		}
+		rotate_to_min_upper(stack_a, rotations);
 	}
 	else
 	{
 		rotations = size - position;
-		while (rotations > 0)
-		{
-			reverse_rotate_stack(stack_a, 'a', 1);
-			rotations--;
-		}
+		rotate_to_min_lower(stack_a, rotations);
 	}
 }

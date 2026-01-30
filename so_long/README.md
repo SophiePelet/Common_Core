@@ -1,3 +1,5 @@
+<img width="1276" height="644" alt="image" src="https://github.com/user-attachments/assets/78b4b2bd-b918-4bc8-bafd-bab983148b92" />
+
 **SO_LONG**
 
 **So_long** is a project at **42 school**.

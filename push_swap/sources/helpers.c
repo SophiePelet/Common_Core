@@ -6,13 +6,13 @@
 /*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 12:47:04 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/30 14:36:51 by sophie           ###   ########.fr       */
+/*   Updated: 2026/01/30 20:01:26 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
 
-int	is_sorted(t_node **stack)
+int	is_sorted(t_node **stack, int print)
 {
 	t_node	*current;
 	int		size;
@@ -22,14 +22,19 @@ int	is_sorted(t_node **stack)
 	current = *stack;
 	size = size_list(stack);
 	if (size == 0 || size == 1)
-		return (1);
+	if (print == 1)
+		return (ft_putstr_fd("OK\n", 1), 1);
 	while (current && current->next)
 	{
 		if (current->data > current->next->data)
+		{
+			if (print == 1)
+				ft_putstr_fd("KO\n", 1);
 			return (0);
+		}
 		current = current->next;
 	}
-	return (1);
+	return (ft_putstr_fd("OK\n", 1), 1);
 }
 
 static long long	exec_atol(char *nptr, int sign, int pos)

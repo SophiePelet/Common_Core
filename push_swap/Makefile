@@ -2,6 +2,7 @@
 # │                                   NAMES                                    │
 # └────────────────────────────────────────────────────────────────────────────┘
 NAME			= push_swap
+NAME_BONUS		= checker
 CFLAGS			= -Wall -Wextra -Werror -I${LIBFT_DIR} -I${INCLUDE_DIR}
 CC				= cc
 LIBFT_DIR		= ./libft/
@@ -26,7 +27,11 @@ SRC_FILES		= sources/main.c \
 				  sources/sorting_small.c \
 				  sources/sorting.c \
 
+BONUS_SRC_FILES	= bonus/checker_bonus.c \
+
 OBJ_FILES		= ${SRC_FILES:.c=.o}
+
+BONUS_OBJ_FILES	= ${BONUS_SRC_FILES:.c=.o}
 
 # ┌────────────────────────────────────────────────────────────────────────────┐
 # │                                   RULES                                    │
@@ -36,6 +41,13 @@ all: ${NAME}
 ${NAME}: ${OBJ_FILES} ${LIBFT}
 			${CC} -o $@ ${OBJ_FILES} ${LIBFT}
 
+bonus: .bonus_built
+
+.bonus_built: ${BONUS_OBJ_FILES} ${LIBFT}
+		@mkdir -p ${OBJ_DIRS}
+		${CC} ${CFLAGS} -o ${NAME} ${BONUS_OBJ_FILES} ${LIBFT}
+		@touch .bonus_built
+
 ${LIBFT}:
 		@$(MAKE) -C ${LIBFT_DIR}
 
@@ -44,11 +56,11 @@ ${LIBFT}:
 	@mkdir -p ${OBJ_DIRS}
 
 clean:
-	rm -f ${OBJ_FILES}
+	rm -f ${OBJ_FILES} ${BONUS_OBJ_FILES}
 	@make clean -C ${LIBFT_DIR}
 
 fclean: clean
-			rm -f ${NAME}
+			rm -f ${NAME} ${NAME_BONUS}
 
 re: fclean all
 

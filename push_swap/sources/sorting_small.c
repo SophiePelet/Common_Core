@@ -6,7 +6,7 @@
 /*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 17:24:13 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/29 20:46:52 by sophie           ###   ########.fr       */
+/*   Updated: 2026/01/30 19:14:01 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	sort_4_nb(t_node **stack_a, t_node **stack_b)
 	t_node	*current;
 
 	current = *stack_a;
-	if (is_sorted(&current))
+	if (is_sorted(&current, 0))
 		return ;
 	min_index = get_min(stack_a);
 	if (min_index == 1)

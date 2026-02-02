@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 17:02:10 by sophie            #+#    #+#             */
-/*   Updated: 2026/02/02 13:22:44 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/02/02 17:06:06 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ static int	make_rotations(t_node **stack_a, t_node **stack_b, char *line)
 		return (rotate_stack(stack_b, 'b', 0), 1);
 	else if (ft_strncmp(line, "rr\n", 3) == 0)
 		return (rotate_both(stack_a, stack_b, 0), 1);
-	else if (ft_strncmp(line, "rra\n", 3) == 0)
+	else if (ft_strncmp(line, "rra\n", 4) == 0)
 		return (reverse_rotate_stack(stack_a, 'a', 0), 1);
-	else if (ft_strncmp(line, "rrb\n", 3) == 0)
+	else if (ft_strncmp(line, "rrb\n", 4) == 0)
 		return (reverse_rotate_stack(stack_b, 'b', 0), 1);
-	else if (ft_strncmp(line, "rrr\n", 3) == 0)
+	else if (ft_strncmp(line, "rrr\n", 4) == 0)
 		return (reverse_rotate_both(stack_a, stack_b, 0), 1);
 	return (0);
 }
@@ -63,6 +63,7 @@ static void	get_commands(int fd, t_node **stack_a, t_node **stack_b)
 		{
 			ft_putstr_fd("Error\n", 2);
 			free(line);
+			get_next_line(0, 1);
 			return ;
 		}
 		free(line);

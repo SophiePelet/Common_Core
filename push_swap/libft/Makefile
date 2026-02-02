@@ -2,7 +2,7 @@
 # │                                   NAMES                                    │
 # └────────────────────────────────────────────────────────────────────────────┘
 NAME			= libft.a
-CFLAGS			= -fPIE -Wall -Wextra -Werror -I${INCLUDE_DIR}
+CFLAGS			= -Wall -Wextra -Werror -I${INCLUDE_DIR}
 CC				= cc
 AR				= ar
 ARFLAGS			= rcs

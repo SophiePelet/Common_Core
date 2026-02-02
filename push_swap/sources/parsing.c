@@ -6,13 +6,14 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 17:07:23 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/27 15:14:04 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/02/02 14:41:35 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
 
-int	nb_size(long long int nb)
+// check if number is between INT_MIN and INT_MAX
+static int	nb_size(long long int nb)
 {
 	if (nb < INT_MIN)
 		return (0);
@@ -21,6 +22,7 @@ int	nb_size(long long int nb)
 	return (1);
 }
 
+// checks if the given argument is numeric or not
 int	check_num(int ac, char **av)
 {
 	char	**arg;
@@ -38,7 +40,8 @@ int	check_num(int ac, char **av)
 		while (arg[j] != NULL)
 		{
 			if (!is_numeric(arg[j]))
-				return (ft_free_array(arg), 0);
+				return (ft_putstr_fd("Error\nNot a valid argument\n", 2),
+					ft_free_array(arg), 0);
 			j++;
 		}
 		i++;
@@ -47,7 +50,7 @@ int	check_num(int ac, char **av)
 	return (1);
 }
 
-int	check_double(t_node **head, long long int nb)
+static int	check_double(t_node **head, long long int nb)
 {
 	int		i;
 	t_node	*current;
@@ -68,6 +71,7 @@ int	check_double(t_node **head, long long int nb)
 	return (1);
 }
 
+// calls the checker functions and fill the list if the argument is ok
 static int	fill_list(t_node **head, char *arg)
 {
 	long long int	nb;
@@ -81,6 +85,7 @@ static int	fill_list(t_node **head, char *arg)
 	return (1);
 }
 
+// fills the stack with all of the arguments
 t_node	*get_num(int ac, char **av)
 {
 	char	**arg;

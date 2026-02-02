@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 14:58:01 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/30 15:42:48 by sophie           ###   ########.fr       */
+/*   Updated: 2026/02/02 14:46:16 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	handle_empty_a(t_node **stack_a, t_node **stack_b)
 		get_actual_index(stack_b);
 }
 
+// makes rr or rrr if both stack a and b needs a rotation in the same direction
 void	opti_rota_both(t_node **stack_a, t_node **stack_b, int *op_a, int *op_b)
 {
 	if (*op_b > 0 && *op_a > 0)
@@ -70,6 +71,9 @@ void	opti_rota_b(t_node **stack_b, int *op_b)
 	}
 }
 
+// finds the best b node to push a and calculates its cost
+// finds the second smallest of a and calculs its cost
+// makes operations to bring both at the right position in a
 void	sorting(t_node **stack_a, t_node **stack_b)
 {
 	t_node	*best_b;
@@ -83,7 +87,7 @@ void	sorting(t_node **stack_a, t_node **stack_b)
 	{
 		best_b = calculate_cost(stack_a, stack_b);
 		if (best_b == NULL)
-			break;
+			break ;
 		op_b = nb_get_to_top(best_b, stack_b);
 		target_a = second_smallest(stack_a, best_b);
 		if (target_a == NULL)

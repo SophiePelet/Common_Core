@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 16:02:44 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/30 19:01:12 by sophie           ###   ########.fr       */
+/*   Updated: 2026/02/02 11:51:16 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,24 @@ int	abs_value(int nb)
 	if (nb < 0)
 		return (-nb);
 	return (nb);
+}
+
+int	is_sorted(t_node **stack)
+{
+	t_node	*current;
+	int		size;
+
+	if (!stack || !*stack)
+		return (1);
+	current = *stack;
+	size = size_list(stack);
+	if (size == 0 || size == 1)
+		return (1);
+	while (current && current->next)
+	{
+		if (current->data > current->next->data)
+			return (0);
+		current = current->next;
+	}
+	return (1);
 }

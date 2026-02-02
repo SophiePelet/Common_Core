@@ -6,13 +6,13 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 12:04:15 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/27 17:54:08 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/02/02 11:48:44 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/push_swap.h"
 
-t_node	*create_node(int content)
+static t_node	*create_node(int content)
 {
 	t_node	*node;
 

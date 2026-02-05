@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:10:41 by sopelet           #+#    #+#             */
-/*   Updated: 2025/12/17 14:57:31 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/02/05 13:27:06 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ int	ft_putnbr(int nb)
 		nb = -nb;
 	}
 	if (nb >= 10)
-	{
 		written += ft_putnbr(nb / 10);
-	}
 	written += ft_putchar(nb % 10 + '0');
 	return (written);
 }

@@ -6,12 +6,14 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 18:34:51 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/22 19:54:46 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/02/05 12:18:48 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/pipex.h"
 
+// handle the closing of useless pipes and fds errors
+// call child_1
 static void	handle_child1(t_pipex *data, int *pipe_end)
 {
 	close(pipe_end[0]);
@@ -25,6 +27,8 @@ static void	handle_child1(t_pipex *data, int *pipe_end)
 	child_1(data, data->fd1, data->cmd1, pipe_end[1]);
 }
 
+//handle the closing of useless pipes and fds errors
+// call child 2
 static void	handle_child2(t_pipex *data, int *pipe_end)
 {
 	close(pipe_end[1]);
@@ -38,6 +42,7 @@ static void	handle_child2(t_pipex *data, int *pipe_end)
 	child_2(data, data->fd2, data->cmd2, pipe_end[0]);
 }
 
+// make the parent process wait for the child processes
 static void	wait_children(pid_t first_child, pid_t second_child, int *status)
 {
 	waitpid(first_child, status, 0);

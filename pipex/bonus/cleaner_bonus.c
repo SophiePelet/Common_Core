@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:35:49 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/22 19:34:58 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/02/05 12:34:42 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	cleanup_on_error(t_child *child)
 	}
 }
 
+// clean the child structure
 void	cleanup_resources(t_child *child)
 {
 	if (child->fd_input >= 0)
@@ -90,6 +91,7 @@ void	cleanup_resources(t_child *child)
 	}
 }
 
+// clean up the struct after cmd execution
 void	clean_exe_child(t_child *child)
 {
 	if (child->index_command < child->nb_commands - 1)
@@ -102,36 +104,3 @@ void	clean_exe_child(t_child *child)
 	free(child->here_doc_pipe);
 	exe_cmd(child->cmd[child->index_command], child->env);
 }
-
-/* void	populate_struct(int ac, char **av, char **envp, t_child *child_struct)
-{
-	child_struct->env = envp;
-	child_struct->fd_output = get_outfile(av[1], av[ac - 1]);
-	if (ft_strncmp(av[1], "here_doc", 8) == 0 && av[1][8] == '\0')
-	{
-		child_struct->nb_commands = ac - 4;
-		child_struct->cmd = &av[3];
-	}
-	else
-	{
-		child_struct->nb_commands = ac - 3;
-		child_struct->cmd = &av[2];
-	}
-	child_struct->pid = malloc(sizeof(pid_t) * child_struct->nb_commands);
-	if (!child_struct->pid)
-	{
-		ft_putstr_fd(ERR_MEM_ALLOCATION, 2);
-		exit(1);
-	}
-	child_struct->here_doc_pipe = malloc(sizeof(int) * 2);
-	if (!child_struct->here_doc_pipe)
-	{
-		ft_putstr_fd(ERR_MEM_ALLOCATION, 2);
-		exit(1);
-	}
-	create_pipes(child_struct);
-	if (ft_strncmp(av[1], "here_doc", 8) == 0 && av[1][8] == '\0')
-		child_struct->fd_input = here_doc(av, child_struct);
-	else
-		child_struct->fd_input = get_infile(av[1]);
-} */

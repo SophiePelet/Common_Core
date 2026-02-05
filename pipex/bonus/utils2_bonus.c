@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 20:10:57 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/22 19:34:59 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/02/05 12:36:16 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@ int	which_outfile(char *arg, const char *outfile)
 		perror(outfile);
 	}
 	return (fd);
-}
-
-void	fail_split_clean(t_child *child)
-{
-	cleanup_on_error(child);
-	cleanup_and_exit(NULL, 1);
 }
 
 void	check_duplication(t_child *child)

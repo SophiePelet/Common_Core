@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 19:37:52 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/22 19:54:25 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/02/05 12:36:22 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void		populate_struct_here_doc(int ac, char **av, char **envp,
 				t_child *child_struct);
 void		bad_command_message(char *av);
 void		cleanup_and_exit(char **av, int exit_code);
-void		fail_split_clean(t_child *child);
 void		error_msg(char *prefix, char *msg, char *error_msg);
 
 // Cleaning
@@ -70,7 +69,6 @@ void		first_child(t_child *child);
 void		middle_child(t_child *child);
 void		last_child(t_child *child);
 void		exe_cmd(char *cmd, char **env);
-void		validate_cmd(char *cmd, char **env, t_child *child);
 int			here_doc(char **av, t_child *child);
 void		check_duplication(t_child *child);
 

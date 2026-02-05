@@ -6,12 +6,13 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 16:02:43 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/26 18:45:29 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/02/05 12:07:19 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/pipex.h"
 
+// check if the given absolute path is executable
 static char	*absolute_path(const char *cmd)
 {
 	if (ft_strchr(cmd, '/'))
@@ -22,6 +23,7 @@ static char	*absolute_path(const char *cmd)
 	return (NULL);
 }
 
+// check if the given cmd is executable
 static char	*test_path(const char *cmd, const char *path)
 {
 	char	**split;
@@ -50,6 +52,7 @@ static char	*test_path(const char *cmd, const char *path)
 	return (ft_free_array(split), NULL);
 }
 
+// find the command path in the PATH
 char	*get_cmd_path(char *cmd, char **env, char **av)
 {
 	int		i;
@@ -79,6 +82,7 @@ char	*get_cmd_path(char *cmd, char **env, char **av)
 	return (cmd_path);
 }
 
+// excute the command given as an argument
 void	exe_cmd(char *cmd, char **env)
 {
 	char	*cmd_path;

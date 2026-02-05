@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:16:01 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/22 19:34:59 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/02/05 12:31:09 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	get_outfile(char *arg, const char *outfile)
 	return (fd);
 }
 
+/* stdin reads from infile and stdout writes to the pipe (write end)
+ + execution of the command */
 void	first_child(t_child *child)
 {
 	int	duplicate;
@@ -62,12 +64,15 @@ void	first_child(t_child *child)
 	check_duplication(child);
 	if (child->fd_input > 2)
 		close(child->fd_input);
-	duplicate = dup2(child->array_pipes[child->index_command][1], STDOUT_FILENO);
+	duplicate = dup2(child->array_pipes[child->index_command][1],
+			STDOUT_FILENO);
 	if (duplicate == -1)
 		exit(1);
 	clean_exe_child(child);
 }
 
+/* stdin reads from the read end and stdout writes to the write end
+this function is called on every cmd that is not the first or last cmd */
 void	middle_child(t_child *child)
 {
 	int	duplicate;
@@ -77,7 +82,8 @@ void	middle_child(t_child *child)
 	if (duplicate == -1)
 		exit(1);
 	close(child->array_pipes[child->index_command - 1][0]);
-	duplicate = dup2(child->array_pipes[child->index_command][1], STDOUT_FILENO);
+	duplicate = dup2(child->array_pipes[child->index_command][1],
+			STDOUT_FILENO);
 	if (duplicate == -1)
 		exit(1);
 	if (child->fd_input != -1)
@@ -86,6 +92,8 @@ void	middle_child(t_child *child)
 	clean_exe_child(child);
 }
 
+/* stdin reads from the pipe (read end) and stdout writes to the outfile
+execution of the command */
 void	last_child(t_child *child)
 {
 	int	duplicate;

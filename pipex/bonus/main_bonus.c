@@ -6,12 +6,13 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 15:16:12 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/22 19:52:16 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/02/05 12:21:10 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/pipex_bonus.h"
 
+// create an array of pipes for all the command in the pipeline
 void	create_pipes(t_child *child)
 {
 	int	i;

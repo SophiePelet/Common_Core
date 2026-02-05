@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 18:34:57 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/15 17:33:52 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/02/05 12:16:18 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	get_outfile(const char *outfile)
 	return (fd);
 }
 
+// stdin reads from infile and stdout writes to the pipe (write end)
+// execution of the command
 void	child_1(t_pipex *data, int fd1, char *cmd1, int pipe_write)
 {
 	int	duplicate;
@@ -59,6 +61,8 @@ void	child_1(t_pipex *data, int fd1, char *cmd1, int pipe_write)
 	exe_cmd(cmd1, data->env);
 }
 
+// stdin reads from the pipe (read end) and stdout writes to the outfile
+// execution of the command
 void	child_2(t_pipex *data, int fd2, char *cmd2, int pipe_read)
 {
 	int	duplicate;

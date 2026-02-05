@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:28:00 by sopelet           #+#    #+#             */
-/*   Updated: 2026/01/22 19:34:58 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/02/05 13:11:48 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,7 @@ void	populate_struct(int ac, char **av, char **envp, t_child *child_struct)
 		ft_putstr_fd(ERR_MEM_ALLOCATION, 2);
 		exit(1);
 	}
-	child_struct->here_doc_pipe = malloc(sizeof(int) * 2);
-	if (!child_struct->here_doc_pipe)
-	{
-		ft_putstr_fd(ERR_MEM_ALLOCATION, 2);
-		exit(1);
-	}
+	child_struct->here_doc_pipe = NULL;
 	create_pipes(child_struct);
 }
 

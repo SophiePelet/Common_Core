@@ -66,7 +66,7 @@ I read a lot of documentation about the different sorting algorithms to have an 
 [Quick Sort](https://www.geeksforgeeks.org/dsa/quick-sort-algorithm/)  
 [Merge Sort](https://www.geeksforgeeks.org/dsa/merge-sort/)  
 [Radix Sort](https://www.geeksforgeeks.org/dsa/radix-sort/)  
-I also checked some articles that former students wrote to explain how the reflexion behind their algorithm.  
+I also checked some articles that former students wrote to explain the reflexion behind their algorithm.  
 [Jamie Dawson](https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a)  
 [Leo Fu](https://medium.com/nerd-for-tech/push-swap-tutorial-fa746e6aba1e)  
 [Yutong Deng](https://pure-forest.medium.com/push-swap-turk-algorithm-explained-in-6-steps-4c6650a458c0)  

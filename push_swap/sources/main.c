@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 12:45:42 by sopelet           #+#    #+#             */
-/*   Updated: 2026/02/02 14:55:56 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/02/10 19:37:06 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ static void	handle_big_lists(t_node **head_a, t_node **head_b, int size)
 	{
 		get_expected_index(head_b);
 		get_actual_index(head_b);
+		get_actual_index(head_a);
 		sorting(head_a, head_b);
 	}
 	get_actual_index(head_a);

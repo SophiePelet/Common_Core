@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 17:02:10 by sophie            #+#    #+#             */
-/*   Updated: 2026/02/02 17:06:06 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/02/10 19:29:48 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,7 @@ int	main(int ac, char **av)
 
 	if (ac == 1)
 		return (0);
-	if (ac == 2)
-	{
-		if (!check_num(ac, av))
-			exit(1);
-	}
-	if (ac > 2)
+	if (ac >= 2)
 	{
 		if (!check_num(ac, av))
 			exit(1);

@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 18:43:32 by sophie            #+#    #+#             */
-/*   Updated: 2026/03/26 14:20:35 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/03/26 18:36:36 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static t_philo	**init_philo(t_global *global)
 	{
 		philo[i] = malloc(sizeof(t_philo));
 		if (!philo[i])
-			return (NULL);
+			return (NULL); // need a clean here to free what was allocated before
 		philo[i]->id = i + 1;
 		philo[i]->nb_meals = 0;
 		philo[i]->is_full = 0;

@@ -16,7 +16,8 @@ SRC_FILES	= src/main.c \
 			  src/init.c \
 			  src/wrappers.c \
 			  src/clean.c \
-			  src/helpers.c
+			  src/helpers.c \
+			  src/routine.c
 
 OBJ_FILES	= $(SRC_FILES:.c=.o)
 

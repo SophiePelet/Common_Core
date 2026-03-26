@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 14:43:16 by sophie            #+#    #+#             */
-/*   Updated: 2026/03/26 13:52:40 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/03/26 18:17:39 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void    	ft_putstr_fd(char *s, int fd);
 long long	ft_atol(char *n);
 int 		ft_isdigit(char c);
 int			is_number(char *str);
+int			ft_strcmp(char *s1, char *s2);
 
 /* ------------------------------- PARSING -------------------------------- */
 
@@ -75,6 +76,7 @@ int 	check_args(int ac, char **av);
 /* -------------------------------- HELPERS ------------------------------- */
 
 size_t	get_time_in_ms(void);
+int 	check_stop(t_global *global);
 
 /* ------------------------------- WRAPPERS ------------------------------- */
 
@@ -91,5 +93,12 @@ t_global    *init_global(int ac, char **av);
 /* --------------------------------- CLEAN -------------------------------- */
 
 void    free_global(t_global *global);
+
+/* --------------------------------- CORE --------------------------------- */
+
+int 	check_stop(t_global *global);
+int		set_stop(t_global *global);
+int 	interrupt_sleep(t_global *global, size_t wait);
+int 	print_messages(t_philo *philo, char *print);
 
 #endif

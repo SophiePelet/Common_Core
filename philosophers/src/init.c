@@ -75,6 +75,8 @@ static t_philo	**init_philo(t_global *global)
 		philo[i]->global = global;
 		philo[i]->left_f = &global->forks[i];
 		philo[i]->right_f = &global->forks[(i + 1) % global->nb_philo];
+		if (!create_mutex(&philo[i]->meal_lock))
+			return (NULL); // need a clean here
 		i++;
 	}
 	return (philo);

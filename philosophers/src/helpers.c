@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 13:49:55 by sopelet           #+#    #+#             */
-/*   Updated: 2026/03/26 18:16:41 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/03/30 19:17:13 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int interrupt_sleep(t_global *global, size_t wait)
     {
         stop = check_stop(global);
         if (stop == 1)
-            return (0);
+            return (0); // return something else when stop == 1? return 1?
         if (stop == -1)
             return (-1);
         usleep(100);

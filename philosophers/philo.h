@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 14:43:16 by sophie            #+#    #+#             */
-/*   Updated: 2026/03/26 18:17:39 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/03/30 22:53:04 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,12 @@ typedef struct s_global	t_global;
 
 typedef struct s_philo
 {
-	pthread_t		p_thread;
+	pthread_t		philo_thread;
 	int				id;
 	int				nb_meals;
 	int				is_full;
 	size_t			last_meal;
+	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	*right_f;
 	pthread_mutex_t	*left_f;
 	t_global		*global;
@@ -77,6 +78,7 @@ int 	check_args(int ac, char **av);
 
 size_t	get_time_in_ms(void);
 int 	check_stop(t_global *global);
+int		set_stop(t_global *global);
 
 /* ------------------------------- WRAPPERS ------------------------------- */
 
@@ -96,9 +98,15 @@ void    free_global(t_global *global);
 
 /* --------------------------------- CORE --------------------------------- */
 
-int 	check_stop(t_global *global);
-int		set_stop(t_global *global);
 int 	interrupt_sleep(t_global *global, size_t wait);
 int 	print_messages(t_philo *philo, char *print);
+int     start_thread(t_global *global);
+void    *routine(void *arg);
+int		meal_monito(t_global *global);
+
+/* --------------------------------- FORKS -------------------------------- */
+
+int     take_forks(t_philo *philo);
+void    drop_forks(t_philo *philo);
 
 #endif

@@ -24,7 +24,10 @@ void    free_global(t_global *global)
         while (i < global->nb_philo)
         {
             if (global->philo[i])
+            {
+                pthread_mutex_destroy(&global->philo[i]->meal_lock);
                 free(global->philo[i]);
+            }
             i++;
         }
         free(global->philo);

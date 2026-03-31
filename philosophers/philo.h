@@ -6,7 +6,7 @@
 /*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 14:43:16 by sophie            #+#    #+#             */
-/*   Updated: 2026/03/30 22:53:04 by sophie           ###   ########.fr       */
+/*   Updated: 2026/03/31 23:13:12 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,21 +72,21 @@ int			ft_strcmp(char *s1, char *s2);
 
 /* ------------------------------- PARSING -------------------------------- */
 
-int 	check_args(int ac, char **av);
+int 		check_args(int ac, char **av);
 
 /* -------------------------------- HELPERS ------------------------------- */
 
-size_t	get_time_in_ms(void);
-int 	check_stop(t_global *global);
-int		set_stop(t_global *global);
+size_t		get_time_in_ms(void);
+int 		check_stop(t_global *global);
+int			set_stop(t_global *global);
 
 /* ------------------------------- WRAPPERS ------------------------------- */
 
-int create_mutex(pthread_mutex_t *mutex);
-int lock_mutex(pthread_mutex_t *mutex);
-int unlock_mutex(pthread_mutex_t *mutex);
-int create_thread(pthread_t *thread, void *(*routine)(void *), void *arg);
-int join_thread(pthread_t *thread);
+int 		create_mutex(pthread_mutex_t *mutex);
+int 		lock_mutex(pthread_mutex_t *mutex);
+int 		unlock_mutex(pthread_mutex_t *mutex);
+int 		create_thread(pthread_t *thread, void *(*routine)(void *), void *arg);
+int 		join_thread(pthread_t *thread);
 
 /* --------------------------------- INIT --------------------------------- */
 
@@ -94,19 +94,24 @@ t_global    *init_global(int ac, char **av);
 
 /* --------------------------------- CLEAN -------------------------------- */
 
-void    free_global(t_global *global);
+void		free_global(t_global *global);
+void		clean_philo(t_philo **philo, int nb);
 
-/* --------------------------------- CORE --------------------------------- */
+/* -------------------------------- ROUTINE ------------------------------- */
 
-int 	interrupt_sleep(t_global *global, size_t wait);
-int 	print_messages(t_philo *philo, char *print);
-int     start_thread(t_global *global);
-void    *routine(void *arg);
-int		meal_monito(t_global *global);
+int			interrupt_sleep(t_global *global, size_t wait);
+int			print_messages(t_philo *philo, char *print);
+void		*routine(void *arg);
+int			meal_monito(t_global *global);
+int			check_and_forks(t_philo *philo, int *has_forks);
+void		single_philo(t_philo *philo, int *has_forks);
+int			philo_eat(t_philo *philo);
+int			philo_sleep_think(t_philo *philo);
+int			increment_meals(t_philo *philo, int *has_forks);
 
 /* --------------------------------- FORKS -------------------------------- */
 
-int     take_forks(t_philo *philo);
-void    drop_forks(t_philo *philo);
+int			take_forks(t_philo *philo);
+void		drop_forks(t_philo *philo);
 
 #endif

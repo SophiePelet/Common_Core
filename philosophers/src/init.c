@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 18:43:32 by sophie            #+#    #+#             */
-/*   Updated: 2026/03/26 18:36:36 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/03/31 22:49:07 by sophie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static t_philo	**init_philo(t_global *global)
 	{
 		philo[i] = malloc(sizeof(t_philo));
 		if (!philo[i])
-			return (NULL); // need a clean here to free what was allocated before
+			return (clean_philo(philo, i - 1), NULL);
 		philo[i]->id = i + 1;
 		philo[i]->nb_meals = 0;
 		philo[i]->is_full = 0;
@@ -76,7 +76,7 @@ static t_philo	**init_philo(t_global *global)
 		philo[i]->left_f = &global->forks[i];
 		philo[i]->right_f = &global->forks[(i + 1) % global->nb_philo];
 		if (!create_mutex(&philo[i]->meal_lock))
-			return (NULL); // need a clean here
+			return (free(philo[i]), clean_philo(philo, i - 1), NULL);
 		i++;
 	}
 	return (philo);

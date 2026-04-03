@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 19:38:03 by sophie            #+#    #+#             */
-/*   Updated: 2026/03/31 12:51:44 by sophie           ###   ########.fr       */
+/*   Updated: 2026/04/03 12:18:50 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	clean_philo(t_philo **philo, int nb)
 	free(philo);
 }
 
-void    free_global(t_global *global)
+void	free_global(t_global *global)
 {
-	int i;
+	int	i;
 
 	if (!global)
 		return ;
@@ -49,4 +49,14 @@ void    free_global(t_global *global)
 	pthread_mutex_destroy(&global->message);
 	pthread_mutex_destroy(&global->death);
 	free(global);
+}
+
+void	join_created_threads(t_global *global, int nb)
+{
+	set_stop(global);
+	while (nb >= 0)
+	{
+		join_thread(&global->philo[nb]->philo_thread);
+		nb--;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 22:53:47 by sophie            #+#    #+#             */
-/*   Updated: 2026/04/03 15:54:12 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/04/03 19:31:05 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,8 @@ int	meal_monito(t_global *global)
 				return (-1);
 			if (check == 1)
 			{
-				if (!lock_mutex(&global->meal))
-					return (-1);
 				if (set_stop(global) == -1)
-					return (unlock_mutex(&global->meal), -1);
-				unlock_mutex(&global->meal);
+					return (-1);
 				break ;
 			}
 		}

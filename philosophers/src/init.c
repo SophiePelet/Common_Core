@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 18:43:32 by sophie            #+#    #+#             */
-/*   Updated: 2026/03/31 22:49:07 by sophie           ###   ########.fr       */
+/*   Updated: 2026/04/03 13:12:57 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-static	pthread_mutex_t *forks_mutex(t_global *global)
+static pthread_mutex_t	*forks_mutex(t_global *global)
 {
 	pthread_mutex_t	*fork;
 	int				i;
@@ -34,7 +34,7 @@ static	pthread_mutex_t *forks_mutex(t_global *global)
 	return (fork);
 }
 
-static	int global_mutex(t_global *global)
+static int	global_mutex(t_global *global)
 {
 	global->forks = forks_mutex(global);
 	if (!global->forks)
@@ -57,12 +57,9 @@ static t_philo	**init_philo(t_global *global)
 	int		i;
 
 	i = 0;
-	philo = malloc(sizeof(t_philo*) * global->nb_philo);
+	philo = ft_calloc(global->nb_philo, sizeof(t_philo *));
 	if (!philo)
 		return (NULL);
-	while (i < global->nb_philo)
-		philo[i++] = NULL;
-	i = 0;
 	while (i < global->nb_philo)
 	{
 		philo[i] = malloc(sizeof(t_philo));
@@ -82,7 +79,7 @@ static t_philo	**init_philo(t_global *global)
 	return (philo);
 }
 
-t_global    *init_global(int ac, char **av)
+t_global	*init_global(int ac, char **av)
 {
 	t_global	*global;
 

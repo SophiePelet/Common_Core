@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitoring.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 22:53:47 by sophie            #+#    #+#             */
-/*   Updated: 2026/03/30 22:56:37 by sophie           ###   ########.fr       */
+/*   Updated: 2026/04/03 15:54:12 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static int	check_philo_full(t_global *global)
 
 	j = 0;
 	full = 0;
-
 	if (global->max_meal > 0)
 	{
 		while (j < global->nb_philo)
@@ -39,7 +38,7 @@ static int	check_philo_full(t_global *global)
 
 static int	check_philo_dead(t_global *global)
 {
-	int	i;
+	int		i;
 	size_t	time;
 
 	i = 0;
@@ -47,8 +46,8 @@ static int	check_philo_dead(t_global *global)
 	{
 		time = get_time_in_ms();
 		if (!lock_mutex(&global->philo[i]->meal_lock))
-			return (-1) ;
-		if (time - global->philo[i]->last_meal > global->time_to_die)
+			return (-1);
+		if (time - global->philo[i]->last_meal >= global->time_to_die)
 		{
 			if (print_messages(global->philo[i], DEAD) == -1)
 				return (unlock_mutex(&global->philo[i]->meal_lock), -1);
@@ -71,7 +70,7 @@ int	meal_monito(t_global *global)
 	{
 		check = check_philo_dead(global);
 		if (check == -1)
-			return (-1) ;
+			return (-1);
 		if (check == 1)
 			break ;
 		if (global->max_meal > 0)
@@ -82,7 +81,7 @@ int	meal_monito(t_global *global)
 			if (check == 1)
 			{
 				if (!lock_mutex(&global->meal))
-					return (-1) ;
+					return (-1);
 				if (set_stop(global) == -1)
 					return (unlock_mutex(&global->meal), -1);
 				unlock_mutex(&global->meal);

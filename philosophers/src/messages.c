@@ -6,11 +6,23 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 15:32:22 by sophie            #+#    #+#             */
-/*   Updated: 2026/03/26 18:49:55 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/04/03 13:12:18 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	size_t	len;
+
+	len = 0;
+	if (!s)
+		return ;
+	while (s[len] != '\0')
+		len++;
+	write(fd, s, len);
+}
 
 static int	is_printable(t_philo *philo, char *print)
 {
@@ -22,7 +34,7 @@ static int	is_printable(t_philo *philo, char *print)
 	return (printable);
 }
 
-int print_messages(t_philo *philo, char *print)
+int	print_messages(t_philo *philo, char *print)
 {
 	size_t	time;
 	int		printable;

@@ -6,29 +6,17 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 14:52:17 by sophie            #+#    #+#             */
-/*   Updated: 2026/03/26 17:55:59 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/04/03 13:12:47 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-void    ft_putstr_fd(char *s, int fd)
+int	ft_isdigit(char c)
 {
-    size_t  len;
-
-    len = 0;
-    if (!s)
-        return ;
-    while (s[len] != '\0')
-        len++;
-    write(fd, s, len);
-}
-
-int ft_isdigit(char c)
-{
-    if (c >= '0' && c <= '9')
-        return (1);
-    return (0);
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }
 
 int	is_number(char *str)
@@ -57,4 +45,35 @@ int	ft_strcmp(char *s1, char *s2)
 	while (s1[i] != '\0' && s1[i] == s2[i])
 		i++;
 	return (s1[i] - s2[i]);
+}
+
+static void	*ft_memset(void *s, int c, size_t n)
+{
+	char	*var;
+
+	var = s;
+	while (n > 0)
+	{
+		*var = c;
+		var++;
+		n--;
+	}
+	return (s);
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	unsigned char		*ptr;
+	size_t				total;
+	unsigned long long	max;
+
+	max = 18446744073709551615ULL;
+	if ((nmemb > 0 && size > 0 && max / nmemb < size))
+		return (NULL);
+	total = nmemb * size;
+	ptr = malloc(total);
+	if (ptr == NULL)
+		return (NULL);
+	ft_memset(ptr, 0, total);
+	return (ptr);
 }

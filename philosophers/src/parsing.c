@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 14:47:46 by sophie            #+#    #+#             */
-/*   Updated: 2026/03/26 14:15:04 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/04/03 12:04:13 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ long long	ft_atol(char *n)
 	return (result);
 }
 
-int check_args(int ac, char **av)
+int	check_args(int ac, char **av)
 {
-	int 			i;
+	int				i;
 	long long int	arg;
 
 	i = 1;

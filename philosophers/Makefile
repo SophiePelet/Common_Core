@@ -5,7 +5,7 @@ NAME		= philo
 CFLAGS		= -Wall -Wextra -Werror -I${INCLUDE_DIR}
 CC			= cc
 INCLUDE_DIR	= .
-OBJ_DIRS	= sources
+OBJ_DIR		= obj
 # ┌────────────────────────────────────────────────────────────────────────────┐
 # │                                   SOURCES                                  │
 # └────────────────────────────────────────────────────────────────────────────┘
@@ -22,25 +22,26 @@ SRC_FILES	= src/main.c \
 			  src/forks.c \
 			  src/monitoring.c
 
-OBJ_FILES	= $(SRC_FILES:.c=.o)
+OBJ_FILES	= $(patsubst src/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 LIBS		= philo.h
 # ┌────────────────────────────────────────────────────────────────────────────┐
 # │                                   RULES                                    │
 # └────────────────────────────────────────────────────────────────────────────┘
-all : mkdir_obj_dirs ${NAME}
+all: ${NAME}
 
 ${NAME}: ${OBJ_FILES}
 			${CC} -o $@ ${OBJ_FILES}
 
-%.o: %.c
+$(OBJ_DIR)/%.o: src/%.c | $(OBJ_DIR)
 	${CC} ${CFLAGS} -c $< -o $@
 
-mkdir_obj_dirs:
-		@mkdir -p ${OBJ_DIRS}
+
+$(OBJ_DIR):
+		@mkdir -p $@
 
 clean:
-		rm -f ${OBJ_FILES}
+		rm -rf ${OBJ_DIR}
 
 fclean: clean
 		rm -f ${NAME}

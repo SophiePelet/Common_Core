@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sophie <sophie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 14:43:16 by sophie            #+#    #+#             */
-/*   Updated: 2026/03/31 23:13:12 by sophie           ###   ########.fr       */
+/*   Updated: 2026/04/03 15:59:28 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <pthread.h>
-#include <sys/time.h>
-#include <string.h>
-#include <limits.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <pthread.h>
+# include <sys/time.h>
+# include <string.h>
+# include <limits.h>
 
 /* ------------------------------- MESSAGES --------------------------------- */
 
@@ -64,38 +64,41 @@ typedef struct s_global
 
 /* -------------------------------- UTILS --------------------------------- */
 
-void    	ft_putstr_fd(char *s, int fd);
+void		ft_putstr_fd(char *s, int fd);
 long long	ft_atol(char *n);
-int 		ft_isdigit(char c);
+int			ft_isdigit(char c);
 int			is_number(char *str);
 int			ft_strcmp(char *s1, char *s2);
+void		*ft_calloc(size_t nmemb, size_t size);
 
 /* ------------------------------- PARSING -------------------------------- */
 
-int 		check_args(int ac, char **av);
+int			check_args(int ac, char **av);
 
 /* -------------------------------- HELPERS ------------------------------- */
 
 size_t		get_time_in_ms(void);
-int 		check_stop(t_global *global);
+int			check_stop(t_global *global);
 int			set_stop(t_global *global);
 
 /* ------------------------------- WRAPPERS ------------------------------- */
 
-int 		create_mutex(pthread_mutex_t *mutex);
-int 		lock_mutex(pthread_mutex_t *mutex);
-int 		unlock_mutex(pthread_mutex_t *mutex);
-int 		create_thread(pthread_t *thread, void *(*routine)(void *), void *arg);
-int 		join_thread(pthread_t *thread);
+int			create_mutex(pthread_mutex_t *mutex);
+int			lock_mutex(pthread_mutex_t *mutex);
+int			unlock_mutex(pthread_mutex_t *mutex);
+int			create_thread(pthread_t *thread, void *(*routine)(void *),
+				void *arg);
+int			join_thread(pthread_t *thread);
 
 /* --------------------------------- INIT --------------------------------- */
 
-t_global    *init_global(int ac, char **av);
+t_global	*init_global(int ac, char **av);
 
 /* --------------------------------- CLEAN -------------------------------- */
 
 void		free_global(t_global *global);
 void		clean_philo(t_philo **philo, int nb);
+void		join_created_threads(t_global *global, int nb);
 
 /* -------------------------------- ROUTINE ------------------------------- */
 
@@ -104,7 +107,6 @@ int			print_messages(t_philo *philo, char *print);
 void		*routine(void *arg);
 int			meal_monito(t_global *global);
 int			check_and_forks(t_philo *philo, int *has_forks);
-void		single_philo(t_philo *philo, int *has_forks);
 int			philo_eat(t_philo *philo);
 int			philo_sleep_think(t_philo *philo);
 int			increment_meals(t_philo *philo, int *has_forks);

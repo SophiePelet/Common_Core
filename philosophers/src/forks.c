@@ -6,11 +6,17 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 14:02:58 by sophie            #+#    #+#             */
-/*   Updated: 2026/04/06 15:29:51 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/04/06 16:17:29 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
+
+void	drop_single(t_philo *philo, int *has_forks)
+{
+	unlock_mutex(philo->left_f);
+	*has_forks = 0;
+}
 
 void	drop_forks(t_philo *philo)
 {

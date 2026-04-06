@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 23:12:05 by sophie            #+#    #+#             */
-/*   Updated: 2026/04/03 15:59:21 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/04/06 16:18:06 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,23 @@ static void	single_philo(t_philo *philo, int *has_forks)
 	if (!lock_mutex(&philo->meal_lock))
 	{
 		set_stop(philo->global);
+		drop_single(philo, has_forks);
 		return ;
 	}
 	philo->last_meal = get_time_in_ms();
 	if (!unlock_mutex(&philo->meal_lock))
 	{
 		set_stop(philo->global);
+		drop_single(philo, has_forks);
 		return ;
 	}
 	if (interrupt_sleep(philo->global, philo->global->time_to_die) == -1)
 	{
 		set_stop(philo->global);
+		drop_single(philo, has_forks);
 		return ;
 	}
-	drop_forks(philo);
+	drop_single(philo, has_forks);
 	*has_forks = 0;
 	return ;
 }

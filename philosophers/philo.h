@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 14:43:16 by sophie            #+#    #+#             */
-/*   Updated: 2026/04/03 15:59:28 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/04/06 16:17:32 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,6 @@ int			increment_meals(t_philo *philo, int *has_forks);
 
 int			take_forks(t_philo *philo);
 void		drop_forks(t_philo *philo);
+void		drop_single(t_philo *philo, int *has_forks);
 
 #endif

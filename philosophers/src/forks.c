@@ -6,7 +6,7 @@
 /*   By: sopelet <sopelet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 14:02:58 by sophie            #+#    #+#             */
-/*   Updated: 2026/04/03 11:59:05 by sopelet          ###   ########.fr       */
+/*   Updated: 2026/04/06 15:29:51 by sopelet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int	pick_odd(t_philo *philo)
 
 int	take_forks(t_philo *philo)
 {
+	int	res;
+
 	if (philo->global->nb_philo == 1)
 	{
 		if (!lock_mutex(philo->right_f))
@@ -85,15 +87,15 @@ int	take_forks(t_philo *philo)
 		}
 		return (0);
 	}
+	if (!lock_mutex(&philo->global->meal))
+		return (-1);
 	if (philo->id % 2 == 0)
-	{
-		if (pick_even(philo) == -1)
-			return (-1);
-	}
+		res = pick_even(philo);
 	else
-	{
-		if (pick_odd(philo) == -1)
-			return (-1);
-	}
+		res = pick_odd(philo);
+	if (!unlock_mutex(&philo->global->meal))
+		return (-1);
+	if (res == -1)
+		return (-1);
 	return (0);
 }
